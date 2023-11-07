@@ -143,6 +143,54 @@ def olivia_generate_text():
     return(string)
 # ------------------
 
+#position (0, 1440)
+#OUTSIDE LOOP:
+DARK_GREEN = (24, 87, 13)
+EVERGREEN = (35, 130, 4)
+bark_x_ocampo = 20
+bark_y_ocampo = 1670
+
+leaves_x_ocampo = 75
+leaves_y_ocampo = 1575
+
+x = 0 
+y = 0 
+
+#Car outer
+polygon_ocampo = [
+(x, y+300),
+(x+10, y+100),
+(x+60, y+275),
+(x+65, y+80),
+(x+150, y+80),
+(x+140, y+140),
+(x+175, y+155),
+(x+200, y+300)
+]
+
+#Window
+polygon_ocampo2 = [
+(x+50, y+270),
+(x+50, y+240),
+(x+140, y+240),
+(x+190, y+290)
+]
+
+#Wheels
+polygon_ocampo3 = [
+(x+30, y+340),
+(x+67, y+310),
+(x+100, y+340),
+(x+67, y+370)
+]
+
+polygon_ocampo4 = [
+(x+210, y+340),
+(x+247, y+310),
+(x+280, y+340),
+(x+247, y+370)
+]
+# ------------------
 
 running = True
 while running:
@@ -412,6 +460,35 @@ while running:
     #eyes
     pygame.draw.ellipse(screen,"black",(olivia_cat_x+123,olivia_cat_y+380,6,8))
     pygame.draw.ellipse(screen,"black",(olivia_cat_x+151,olivia_cat_y+380,6,8))
+
+    # ----------------------------------------------------------------------------------------
+    x = 0
+    y = 1440
+    width = 640
+    height = 480
+    
+    bark_x_ocampo -= 5
+    leaves_x_ocampo -= 5
+
+    # Must draw with reference to that coordinate
+    #car
+    pygame.draw.polygon(screen, (245, 32, 17), ((x, y+340), (x+10, y+280), (x+60, y+280), (x+65, y+250), (x+150, y+250), (x+200, y+290), (x+290, y+300), (x+300, y+340)))
+    pygame.draw.polygon(screen, (15, 245, 252), ((x+67, y+280), (x+72, y+255), (x+143, y+255), (x+190, y+290)))
+    pygame.draw.rect(screen, (245, 32, 17), (x+110, y+250, 7, 40))
+    pygame.draw.polygon(screen, (46, 44, 44), ((x+30, y+340), (x+67, y+310), (x+100, y+340),(x+67, y+370)))
+    pygame.draw.polygon(screen, (46, 44, 44), ((x+210, y+340), (x+247, y+310), (x+280, y+340),(x+247, y+370)))
+
+    #tree
+    pygame.draw.rect(screen, (105, 71, 13), (bark_x_ocampo + 90, bark_y_ocampo - 100, 35, 250))
+    pygame.draw.circle(screen, (EVERGREEN), (leaves_x_ocampo, leaves_y_ocampo), 40)
+    pygame.draw.circle(screen, (DARK_GREEN), (leaves_x_ocampo + 25, leaves_y_ocampo - 30), 37)
+    pygame.draw.circle(screen, (EVERGREEN), (leaves_x_ocampo + 65, leaves_y_ocampo - 20), 50)
+    pygame.draw.circle(screen, (EVERGREEN), (leaves_x_ocampo + 65, leaves_y_ocampo + 20), 40)
+    pygame.draw.circle(screen, (DARK_GREEN), (leaves_x_ocampo + 35, leaves_y_ocampo + 40), 40)
+    pygame.draw.circle(screen, (DARK_GREEN), (leaves_x_ocampo + 95, leaves_y_ocampo + 30), 40)
+    if leaves_x_ocampo == -100: 
+        bark_x_ocampo = 640 
+        leaves_x_ocampo = 695
     # ----------------------------------------------------------------------------------------
 
     # Must have these coordinates
