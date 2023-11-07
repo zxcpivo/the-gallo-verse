@@ -91,6 +91,19 @@ sizeilia = 150
 
 # ------------------
 
+cord_yang1 = 320
+cord_yang3 = 440
+cord_yang2 = 440
+cord_yang4 = 200
+cord_yang5 = 200
+count_yang = 0
+upyang = 0
+upyang2 = 0
+upyang3 = 0
+upyang4 = 0
+upyang5 = 0
+
+#-----------------
 
 running = True
 while running:
@@ -321,7 +334,87 @@ while running:
 
     pygame.draw.circle(screen, flash_color, (x + circle_x_ilia, y + circle_y_ilia), sizeilia)
 
-    # ----------------------------------------------------------------------------------------
+    # Youlchan --------------------------------------------------------
+
+    x = 0
+    y = 480 * 5
+    width = 640
+    height = 480
+    # animation
+    count_yang += 1
+    if count_yang == 1:
+      n_yang = random.randrange(16)
+      n_yang2 = random.randrange(16)
+      n_yang3 = random.randrange(16)
+      n_yang4 = random.randrange(16)
+      n_yang5 = random.randrange(16)
+      yang1 = random.randrange(6)
+      yang2 = random.randrange(6)
+      yang3 = random.randrange(6)
+      yang4 = random.randrange(6)
+      yang5 = random.randrange(6)
+    if count_yang == 20:
+      cord_yang3 += n_yang
+      cord_yang1 -= n_yang2
+      cord_yang2 -= n_yang3
+      upyang4 -= yang4
+      upyang5 += yang5
+    if count_yang == 30:
+      upyang += yang1
+      upyang2 -= yang2
+      upyang3 += yang3
+      cord_yang4 += n_yang4
+      cord_yang5 += n_yang5
+    if count_yang == 40:
+      cord_yang3 -= n_yang*2
+      cord_yang1 += n_yang2*2
+      cord_yang2 += n_yang3*2
+      upyang -= yang1*2
+      upyang2 += yang2*2
+      upyang5 -= yang5*2
+    if count_yang == 50:
+      cord_yang4 += n_yang4
+      cord_yang5 += n_yang5
+      upyang3 -= yang3*2
+      upyang4 += yang4*2
+    if count_yang == 60:
+      cord_yang1 = 320
+      cord_yang4 = 200
+      cord_yang5 = 200
+      upyang4 = 0
+      upyang5 = 0
+    if count_yang == 70:
+      cord_yang3 = 440
+      cord_yang2 = 440
+      upyang = 0
+      upyang2 = 0
+      upyang3 = 0
+      count_yang = 0
+    # bg
+    pygame.draw.rect(screen, (150,20,20), (x, y, width, height))
+
+  
+    
+    # Sclera 
+    pygame.draw.ellipse(screen, (255,255,255),(x + 320 - 60 ,y + 240 - 30, 120, 60))
+    pygame.draw.ellipse(screen, (255,255,255),(x + 440 - 30,y + 380 , 120, 60))
+    pygame.draw.ellipse(screen, (255,255,255),(x + 440 - 30,y + 100 - 60, 120, 60))
+    pygame.draw.ellipse(screen, (255,255,255),(x + 200 - 90,y + 380 , 120, 60))
+    pygame.draw.ellipse(screen, (255,255,255),(x + 200 - 90,y + 100- 60, 120, 60))
+    #Iris
+    pygame.draw.circle(screen, (255,100, 100),(x + cord_yang1 ,y + 240 + upyang), 30)
+    pygame.draw.circle(screen, (255,100, 100),(x + cord_yang2+30, y+410 + upyang2),30)
+    pygame.draw.circle(screen, (255,100, 100),(x + cord_yang3 + 30,y + 70 + upyang3), 30)
+    pygame.draw.circle(screen, (255,100, 100),(x + cord_yang4 -30,y + 410 + upyang4), 30)
+    pygame.draw.circle(screen, (255,100, 100),(x + cord_yang5 -30,y + 70 + upyang5), 30)
+    #Pupil
+    pygame.draw.circle(screen, (25,50,50),(x + cord_yang1 ,y + 240 + upyang), 15)
+    pygame.draw.circle(screen, (0,0,0),(x + cord_yang2 + 30 ,y + 410 + upyang2), 15)
+    pygame.draw.circle(screen, (0,0,0),(x + cord_yang3 + 30,y + 70 + upyang3), 15)
+    pygame.draw.circle(screen, (0,0,0),(x + cord_yang4 -30,y + 410 + upyang4), 15)
+    pygame.draw.circle(screen, (0,0,0),(x + cord_yang5 -30,y + 70 + upyang5), 15)
+
+    #----------------------------------------------------------------------------
 
     # Must have these coordinates
     x = 1920
