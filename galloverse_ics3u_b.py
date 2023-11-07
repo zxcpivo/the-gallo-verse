@@ -129,6 +129,13 @@ daniel_eyelid_front_y = daniel_eyelid_back_y + 10
 daniel_pupil_radius = 150
 daniel_pupil_x = (640 - daniel_pupil_radius) / 2
 daniel_pupil_y = (480 - daniel_pupil_radius) / 2
+# Moon Positions
+moon_x_hayden = 200
+inner_moon_x_hayden = 180
+inner_moon_x_hayden2 = 220
+moon_y_hayden = 50
+inner_moon_y_hayden = 65
+inner_moon_y_hayden2 = 25
 
 # ---------------------
 sun_x_anthony = 570
@@ -467,6 +474,55 @@ while running:
             y_button_michael += 10
 
         x_people_michael += 90
+
+
+    # -----------
+    x = 640 * 5
+    y = 480 * 4
+    width = 640
+    height = 480
+
+    # Moving Moon
+    moon_x_hayden += 6
+    inner_moon_x_hayden += 6
+    inner_moon_x_hayden2 += 6
+
+    # Background Code
+    pygame.draw.rect(screen, (0, 0, 140), (x, y, width, height))
+    pygame.draw.rect(screen, (5, 107, 5), (x, y + 400, width, height - 400))
+
+    for star in range (50):
+        star_x_hayden = random.randint(1, 640)
+        star_y_hayden = random.randint(1, 400)
+        pygame.draw.circle(screen, (225, 225, 5), (x + star_x_hayden, y + star_y_hayden), 3)
+
+    pygame.draw.circle(screen, (120, 120, 120), (x + moon_x_hayden, y + moon_y_hayden), 60)
+    # Code for the inner parts of moon
+    pygame.draw.circle(screen, (60, 60, 60), (x + inner_moon_x_hayden, y + inner_moon_y_hayden), 30)
+    pygame.draw.circle(screen, (60, 60, 60), (x + inner_moon_x_hayden2, y + inner_moon_y_hayden2), 18)
+    
+    # Code for building in back
+    pygame.draw.rect(screen, (40, 40, 40), (x + 450, y + 130, 130, 320))
+    pygame.draw.rect(screen, (40, 40, 40), (x + 40, y + 150, 130, 320))
+    
+    
+    # Code for buildings in front
+    pygame.draw.rect(screen, (20, 20, 20), (x + 480, y + 280, 70, 150))
+    pygame.draw.rect(screen, (20, 20, 20), (x + 560, y + 270, 70, 150))
+    pygame.draw.rect(screen, (20, 20, 20), (x + 80, y + 280, 70, 150))
+    pygame.draw.rect(screen, (20, 20, 20), (x + 0 , y + 270, 70, 150))
+    
+    # Code for person
+    pygame.draw.circle(screen, (0, 0, 0), (x + 320, y + 300), 30)
+    pygame.draw.rect(screen, (0, 0, 0), (x + 300, y + 325, 40, 75))
+    pygame.draw.rect(screen, (0, 0, 0), (x + 290, y + 340, 10, 30))
+    pygame.draw.polygon(screen, (0, 0, 0), [(x + 330, y + 330), (x + 350, y + 340), (x + 370, y + 300), (x + 360, y + 290)])
+
+    # Looping Moon
+    if moon_x_hayden > 640 - 60:
+        moon_x_hayden = 0
+        inner_moon_x_hayden = -20
+        inner_moon_x_hayden2 = 20
     x = 1920
     y = 1920
     width = 640
@@ -591,6 +647,8 @@ while running:
     
     # ----------------------------------------------------------------------------------------
 
+
+    
     # Must have these coordinates
     x = 1920
     y = 1440
