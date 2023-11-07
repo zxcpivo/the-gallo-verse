@@ -432,8 +432,8 @@ while running:
 
 
     # -----------
-    x = width x (x)
-    y = height x (y)
+    x = 640 * 5
+    y = 480 * 4
     width = 640
     height = 480
 
