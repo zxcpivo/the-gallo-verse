@@ -1,4 +1,15 @@
 # the-gallo-verse
+
+- [the-gallo-verse](#the-gallo-verse)
+  * [The x, y coordinates](#the-x--y-coordinates)
+  * [Edit the correct file](#edit-the-correct-file)
+  * [Your outside-the-loop code](#your-outside-the-loop-code)
+  * [Your inside-the-loop code](#your-inside-the-loop-code)
+  * [Saving your code](#saving-your-code)
+  * [Editing after pull request](#editing-after-pull-request)
+
+<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
+
 In order to have everyone's code work correctly there are a couple rules you must follow.
 
 Before you start you need to understand the two main places to place your code.
