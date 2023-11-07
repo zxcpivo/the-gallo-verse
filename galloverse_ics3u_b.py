@@ -136,6 +136,28 @@ rock_x_anthony = 600
 rock_y_anthony = random.randrange(20, 460)
 radius_fire = 1
 
+colour_lucas = (0, 0, 255)
+
+car_lucas_x = 50
+car_lucas_y = 380
+
+circle_palmar_x = 340
+circle_palmar_y = 440
+car_go_back = False
+
+bomb_lucas_x = 160
+bomb_lucas_y = 430
+
+sun_lucas_x = 0
+sun_lucas_y = 350
+
+
+font_lucas = pygame.font.SysFont('Raider', 50)
+text_lucas = font_lucas.render("Lucas P is the Best", True, (0, 0, 0))
+text_lucas_x = 160
+text_lucas_y = 100
+
+
 
 
 running = True
@@ -431,6 +453,53 @@ while running:
             y_button_michael += 10
 
         x_people_michael += 90
+    x = 1920
+    y = 1920
+    width = 640
+    height = 480
+    pygame.draw.rect(screen, (0, 0, 255), (x, y, width, height))
+    initial_bomb_x = x -  1900
+    
+    if not car_go_back:
+        car_lucas_x += 4
+        if car_lucas_x >= 400:
+            car_go_back = True
+    elif car_go_back:
+        car_lucas_x -= 4
+        car_go_back = True
+        if car_lucas_x <= 0:
+            car_go_back = False
+    
+    if sun_lucas_x <= 444:
+        sun_lucas_x += 4
+        sun_lucas_y -= 2
+    elif sun_lucas_x == 800:
+        sun_lucas_x = 0
+        sun_lucas_y = 350
+    else:
+        sun_lucas_x += 4
+        sun_lucas_y += 2
+
+    pygame.draw.rect(screen, (0, 0 , 0), ( x + car_lucas_x + 200, y + car_lucas_y, 100, 20))
+    pygame.draw.rect(screen, (20, 20 , 20), ( x + 50, y + 250, 100, 200))
+    pygame.draw.rect(screen, (20, 20 , 20), ( x + 500, y + 250, 100, 200))
+    pygame.draw.rect(screen, (20, 20 , 20), ( x + 300, y + 250, 100, 200))
+    pygame.draw.rect(screen, (0, 255 , 0), ( x + car_lucas_x, y + car_lucas_y, 200, 100))
+    pygame.draw.circle(screen, (0, 255, 0), (x + car_lucas_x + 50, y + car_lucas_y), 60)
+    pygame.draw.circle(screen, (200, 230, 0), (x + sun_lucas_x, y + sun_lucas_y), 60)
+    pygame.draw.rect(screen, (20, 20 , 20), ( x + 40, y + 250, 100, 200))
+    pygame.draw.rect(screen, (20, 80 , 20), ( x + 40, y + 420, 200, 50))
+    pygame.draw.rect(screen, (250, 250 , 250), ( x + 25, y + 50, 150, 50))
+    pygame.draw.rect(screen, (250, 250 , 250), ( x + 65, y + 30, 50, 50))
+    pygame.draw.rect(screen, (250, 250 , 250), ( x + 300, y + 50, 150, 50))
+    pygame.draw.rect(screen, (250, 250 , 250), ( x + 35, y + 30, 50, 50))
+    screen.blit(text_lucas, (x + text_lucas_x, y + text_lucas_y))
+
+    if car_lucas_x >= 90:
+        pygame.draw.circle(screen, (0, 0, 0), (x + bomb_lucas_x, y + bomb_lucas_y), 60)
+        bomb_lucas_x += 25
+        if bomb_lucas_x >= 2500:
+            bomb_lucas_x = initial_bomb_x
 
     #----------------------------
     x = 3200
