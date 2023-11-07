@@ -126,15 +126,32 @@ daniel_eyelid_front_y = daniel_eyelid_back_y + 10
 daniel_pupil_radius = 150
 daniel_pupil_x = (640 - daniel_pupil_radius) / 2
 daniel_pupil_y = (480 - daniel_pupil_radius) / 2
+#----------------
+gleb_rect_x = 200
+gleb_rect_y = 200
+gleb_circle_x = gleb_rect_x + 80
+circle_y = 225
+gleb_leg1_x = 150
+gleb_leg1_y = 200
+gleb_leg2_x = 150
+gleb_leg2_y = 150
+gleb_shoe1_x = 150
+gleb_shoe1_y = 150
+gleb_shoe2_x = 150
+gleb_shoe2_y = 500
+gleb_bottom_underwear1_x = 188
+gleb_bottom_underwear1_y = 500
+gleb_bottom_underwear2_x = 188
+bottom_underwear2_y = 350
+gleb_upper_underwear_x = 200
+gleb_upper_underwear_y = 200
+gleb_left_hand_x = 350
+gleb_left_hand_y = 207
+gleb_right_hand_x = 350 
+gleb_right_hand_y = 240
+speed = 1
+#----------------
 
-# ---------------------
-sun_x_anthony = 570
-sun_y_anthony = random.randrange(70, 410)
-moon_x_anthony = 600
-moon_y_anthony = random.randrange(30, 451)
-rock_x_anthony = 600
-rock_y_anthony = random.randrange(20, 460)
-radius_fire = 1
 
 
 
@@ -431,82 +448,47 @@ while running:
             y_button_michael += 10
 
         x_people_michael += 90
+    # ----------------------------------------------------------------------------------------
 
-    #----------------------------
-    x = 3200
-    y = 1440
+    gleb_circle_x += speed
+    gleb_rect_x += speed
+    gleb_leg1_x += speed
+    gleb_leg2_x += speed
+    gleb_shoe1_x += speed
+    gleb_shoe2_x += speed
+    gleb_bottom_underwear1_x += speed
+    gleb_bottom_underwear2_x += speed
+    gleb_upper_underwear_x += speed
+    gleb_left_hand_x += speed
+    gleb_right_hand_x += speed
+    if gleb_left_hand_x > 540:
+        speed = speed * -1
+    elif gleb_shoe1_x < 0:
+        speed = speed * -1
+
+    # DRAWING
+    # Must have these coordinates
+    x = 1920
+    y = 960
     width = 640
     height = 480
-    y_engine_anthony = 0
-    number_of_engines_anthony = 3
-    x_window_anthony = 300
-    y_window_anthony = 275
-    number_of_windows_anthony = 8
-    count_anthony = 0
-    moon_x_anthony -= 2
-    sun_x_anthony -= 4
-    rock_x_anthony -= 6
-    
-    # Background
-    pygame.draw.rect(screen, (8, 23, 54), (x, y, width, height))
 
-    # # Crazy Star Code
-    for star in range(20):
-        x_star_anthony = random.randrange(1, 640)
-        y_star_anthony = random.randrange(1, 480)
-        pygame.draw.circle(screen, (225, 225, 225), (x + x_star_anthony, y + y_star_anthony), 1)
- 
-    # Planet Code
-    pygame.draw.circle(screen, (217, 106, 28), (x + sun_x_anthony, y + sun_y_anthony), 60)
-    pygame.draw.circle(screen, (219, 167, 44), ((x + sun_x_anthony), y + sun_y_anthony), 55)
-    pygame.draw.ellipse(screen, (92, 73, 28), ((x + sun_x_anthony) - 72, y + sun_y_anthony, 145, 10))
-    if sun_x_anthony < 75:
-        sun_x_anthony = 570
-        sun_y_anthony = random.randrange(70, 410)
+    # Rather than screen.fill, draw a rectangle
+    pygame.draw.rect(screen, (137, 207, 240), (x, y, width, height))
 
-    pygame.draw.circle(screen, (137, 116, 116), (x + moon_x_anthony, y + moon_y_anthony), 30)
-    pygame.draw.circle(screen, (105, 87, 87), ((x + moon_x_anthony) + 10, (y + moon_y_anthony) + 6), 10)
-    pygame.draw.circle(screen, (105, 87, 87), ((x + moon_x_anthony) - 15, (y + moon_y_anthony) - 10), 7)
-    if moon_x_anthony < 40:
-        moon_x_anthony = 600
-        moon_y_anthony = random.randrange(30, 451)
-    
-    pygame.draw.polygon(screen, (225, 0, 0), ((x + rock_x_anthony + 2, y + rock_y_anthony - 12), (x + rock_x_anthony + 2, y + rock_y_anthony + 12), (x + rock_x_anthony + 40, y + rock_y_anthony)))
-    pygame.draw.circle(screen, (56, 56, 56), (x + rock_x_anthony, y + rock_y_anthony), 15)
-    if rock_x_anthony < 20:
-        rock_x_anthony = 600
-        rock_y_anthony = random.randrange(20, 451)
-    
-    # # Spaceship Code
-    while y_engine_anthony < (30 * number_of_engines_anthony):
-        pygame.draw.ellipse(screen, (217, 215, 215), (x + ((width / 2) - 125),y + (((height / 2)+ y_engine_anthony) - 5), 100, 50))
-        y_engine_anthony += 30
-        
-    pygame.draw.ellipse(screen, (225, 225, 225), (x + ((320) - 125),y + (height / 2), 350, 100))
-    
-    while count_anthony <= (28 * number_of_windows_anthony):
-        pygame.draw.circle(screen, (0, 0, 0), ((x + x_window_anthony),(y + y_window_anthony)), 8)
-        x_window_anthony += 20
-        count_anthony += 28
-
-    # # Fire Code
-    pygame.draw.circle(screen, (225, 165, 0), (x + 135, y + 290), radius_fire)
-    pygame.draw.circle(screen, (225, 0, 0), (x + 190, y + 270), radius_fire + 2)
-    pygame.draw.circle(screen, (252, 0, 0), (x + 190, y + 310), radius_fire + 2)
-    pygame.draw.circle(screen, (252, 102, 0), (x + 170, y + 300), radius_fire + 1)
-    pygame.draw.circle(screen, (252, 102, 0), (x + 170, y + 280), radius_fire + 1)
-    radius_fire += 2
-    if radius_fire > 12:
-        radius_fire = 1
-
-    # Rock Hits Rocket
-    if (y + rock_y_anthony) <= (y + 350) and (y + rock_y_anthony) >= (y + 230):
-        rock_y_anthony = 290
-        if (x + rock_x_anthony) < (x + 540):
-            pygame.draw.circle(screen, (225, 0, 0), (x + 540, y + 290), 50)
-            pygame.draw.circle(screen, (225, 100, 0), (x + 540, y + 290), 30)
-    
-    # ----------------------------------------------------------------------------------------
+    # Must draw with reference to that coordinate
+    pygame.draw.rect(screen, (0, 0, 255), (x + gleb_left_hand_x, + gleb_left_hand_y, 100, 7)) # left hand
+    pygame.draw.circle(screen, (255, 204, 153), (x + gleb_circle_x + 100, y + circle_y), 30) #head
+    pygame.draw.rect(screen, (0, 0, 255), (x + gleb_right_hand_x, y + gleb_right_hand_y, 100, 7)) #right hand
+    pygame.draw.rect(screen, (0, 0, 255), (x + gleb_rect_x, y + gleb_rect_y, 150, 50))
+    pygame.draw.rect(screen, (0, 0, 255), (x + gleb_leg1_x, y + gleb_rect_y + 7, 50, 10))
+    pygame.draw.rect(screen, (0, 0, 255), (x + gleb_leg2_x, y + gleb_rect_y + 35, 50, 10))
+    pygame.draw.rect(screen, (255, 0, 0), (x + gleb_shoe1_x, y + gleb_rect_y + 35, 20, 10))
+    pygame.draw.rect(screen, (255, 0, 0), (x + gleb_shoe2_x, y + gleb_rect_y + 7, 20, 10))
+    pygame.draw.rect(screen, (255, 0, 0), (x + gleb_bottom_underwear1_x, y + gleb_rect_y + 35, 12, 10)) #underwear on the legs
+    pygame.draw.rect(screen, (255, 0, 0), (x + gleb_bottom_underwear2_x, y + gleb_rect_y + 7, 12, 10)) #underwear on the legs
+    pygame.draw.rect(screen, (255, 0, 0), (x + gleb_rect_x, y + gleb_rect_y, 25, 50)) # upper underwear 
+    pygame.draw.polygon(screen, (255, 0, 0), [(x + gleb_rect_x + 75, y + gleb_rect_y - 20), (x + gleb_rect_x + 150, y + gleb_rect_y + 25), (x + gleb_rect_x + 75, y + gleb_rect_y + 80)], 0) # cape
 
     # Must have these coordinates
     x = 1920
