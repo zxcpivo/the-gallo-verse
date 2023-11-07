@@ -126,7 +126,6 @@ daniel_eyelid_front_y = daniel_eyelid_back_y + 10
 daniel_pupil_radius = 150
 daniel_pupil_x = (640 - daniel_pupil_radius) / 2
 daniel_pupil_y = (480 - daniel_pupil_radius) / 2
-
 # Moon Positions
 moon_x_hayden = 200
 inner_moon_x_hayden = 180
