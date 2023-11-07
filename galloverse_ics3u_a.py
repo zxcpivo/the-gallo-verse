@@ -90,6 +90,58 @@ growrate = 5
 sizeilia = 150
 
 # ------------------
+olivia_timer = 0
+olivia_circle_counter = 0
+
+olivia_circles_list = []
+
+olivia_text = "Aw sweet! Man-made horrors beyond my comprehension!"
+
+olivia_font = pygame.font.SysFont("Arial",20)
+
+for i in range(20,640,40):
+    for j in range(20,480,40):
+        if (i + j) % 80 == 0:
+            olivia_circles_list.append({"x":i,"y":j})
+
+#HUZZAH I DONT NEED TO WORRY ABOUT VARIABLE NAMES THANK GOD FOR LOCAL VARIABLES
+def olivia_draw_circles():
+    for circle in olivia_circles_list:
+        num = (circle["x"] + circle["y"])/20 + olivia_timer
+        r = 255 * abs(math.cos(math.pi*(num/60-1/3)))
+        g = 255 * abs(math.cos(math.pi*(num/60-2/3)))
+        b = 255 * abs(math.cos(math.pi*(num/60-3/3)))
+        
+        circle_x = x+circle["x"]
+        circle_y = y+circle["y"]+math.sin(math.pi*num/20)*8
+        circle_colour = (r,g,b)
+        circle_size = 20
+        # mouse hover doesn't work in galloverse :(
+        '''mouse_x, mouse_y = pygame.mouse.get_pos()       
+        x_distance = abs(circle_x - mouse_x)
+        y_distance = abs(circle_y - mouse_y)
+        
+        if x_distance <= 100 and y_distance <= 100:
+            circle_size += (200 - x_distance - y_distance)/10'''
+        
+        pygame.draw.circle(screen,circle_colour,(circle_x,circle_y),circle_size)
+
+def olivia_generate_text():
+    letters = "aaaaaaaabbcccddddeeeeeeeeeeeefffgghhhhhhiiiiiiiijkllllmmmnnnnnnnnooooooooppqrrrrrrsssssssstttttttttuuuvwwxyyz"
+    symbols = "!?,.:;"
+    string = " "
+    for i in range(15):
+        num = random.randrange(0,25)
+        if num == 24 and string[i-1] not in symbols and string[i-1] != " ":
+            string += symbols[random.randrange(0,len(symbols))] + " "
+        elif num > 15 and string[i-1] != " ":
+            string += " "
+        else:
+            string += letters[random.randrange(0,len(letters))]
+    string += symbols[random.randrange(0,3)]
+    string = string [1:]
+    return(string)
+# ------------------
 
 cord_yang1 = 320
 cord_yang3 = 440
@@ -104,6 +156,55 @@ upyang4 = 0
 upyang5 = 0
 
 #-----------------
+
+#position (0, 1440)
+#OUTSIDE LOOP:
+DARK_GREEN = (24, 87, 13)
+EVERGREEN = (35, 130, 4)
+bark_x_ocampo = 20
+bark_y_ocampo = 1670
+
+leaves_x_ocampo = 75
+leaves_y_ocampo = 1575
+
+x = 0 
+y = 0 
+
+#Car outer
+polygon_ocampo = [
+(x, y+300),
+(x+10, y+100),
+(x+60, y+275),
+(x+65, y+80),
+(x+150, y+80),
+(x+140, y+140),
+(x+175, y+155),
+(x+200, y+300)
+]
+
+#Window
+polygon_ocampo2 = [
+(x+50, y+270),
+(x+50, y+240),
+(x+140, y+240),
+(x+190, y+290)
+]
+
+#Wheels
+polygon_ocampo3 = [
+(x+30, y+340),
+(x+67, y+310),
+(x+100, y+340),
+(x+67, y+370)
+]
+
+polygon_ocampo4 = [
+(x+210, y+340),
+(x+247, y+310),
+(x+280, y+340),
+(x+247, y+370)
+]
+# ------------------
 
 running = True
 while running:
@@ -333,6 +434,46 @@ while running:
     pygame.draw.rect(screen, (45, 96, 255), (x, y, width_ilia, height_ilia))
 
     pygame.draw.circle(screen, flash_color, (x + circle_x_ilia, y + circle_y_ilia), sizeilia)
+    #  OLIVIA ------------------
+    x = 3840
+    y = 1440
+    if olivia_timer % 60 == 0:
+        olivia_text = olivia_font.render(olivia_generate_text(),True,"black")
+    olivia_timer += 1
+    pygame.draw.rect(screen,(80,30,70),(x,y,640,480))
+    olivia_draw_circles()
+    
+    olivia_cat_x = 5*(abs(100-olivia_timer/2%200))+x-75
+    olivia_cat_y = -50*(abs(math.sin(olivia_timer/10)))+y
+    #text
+    pygame.draw.ellipse(screen,"black",(olivia_cat_x+50,y+150,180,120))
+    pygame.draw.polygon(screen,"black",((olivia_cat_x+125,y+263),(olivia_cat_x+155,y+263),(olivia_cat_x+140,olivia_cat_y*0.5+y*0.5+330)))
+    pygame.draw.ellipse(screen,"white",(olivia_cat_x+54,y+154,172,112))
+    pygame.draw.polygon(screen,"white",((olivia_cat_x+130,y+260),(olivia_cat_x+150,y+260),(olivia_cat_x+140,olivia_cat_y*0.5+y*0.5+320)))
+    screen.blit(olivia_text,(olivia_cat_x+70,y+195))
+    
+    #body
+    pygame.draw.ellipse(screen,"black",(olivia_cat_x+96,olivia_cat_y+351,88,78))
+    pygame.draw.polygon(screen,"black",((olivia_cat_x+104,olivia_cat_y+340),(olivia_cat_x+101,olivia_cat_y+377),(olivia_cat_x+131,olivia_cat_y+360)))
+    pygame.draw.polygon(screen,"black",((olivia_cat_x+175,olivia_cat_y+340),(olivia_cat_x+178,olivia_cat_y+377),(olivia_cat_x+148,olivia_cat_y+360)))
+    pygame.draw.ellipse(screen,"white",(olivia_cat_x+100,olivia_cat_y+355,80,70))
+    pygame.draw.polygon(screen,"white",((olivia_cat_x+106,olivia_cat_y+345),(olivia_cat_x+106,olivia_cat_y+370),(olivia_cat_x+126,olivia_cat_y+360)))
+    pygame.draw.polygon(screen,"white",((olivia_cat_x+173,olivia_cat_y+345),(olivia_cat_x+173,olivia_cat_y+370),(olivia_cat_x+153,olivia_cat_y+360)))
+    #mouth
+    if 100-olivia_timer/2%200 > 0:
+        olivia_cat_x -= 5
+    else:
+        olivia_cat_x += 5
+    pygame.draw.ellipse(screen,"black",(olivia_cat_x+127,olivia_cat_y+378,26,39))
+    pygame.draw.ellipse(screen,"white",(olivia_cat_x+130,olivia_cat_y+381,20,33))
+    pygame.draw.ellipse(screen,"black",(olivia_cat_x+122,olivia_cat_y+378,20,20))
+    pygame.draw.ellipse(screen,"black",(olivia_cat_x+138,olivia_cat_y+378,20,20))
+    pygame.draw.ellipse(screen,"white",(olivia_cat_x+119,olivia_cat_y+376,23,19))
+    pygame.draw.ellipse(screen,"white",(olivia_cat_x+138,olivia_cat_y+376,23,19))
+    pygame.draw.rect(screen,"white",(olivia_cat_x+120,olivia_cat_y+370,40,20))
+    #eyes
+    pygame.draw.ellipse(screen,"black",(olivia_cat_x+123,olivia_cat_y+380,6,8))
+    pygame.draw.ellipse(screen,"black",(olivia_cat_x+151,olivia_cat_y+380,6,8))
 
     # Youlchan --------------------------------------------------------
 
@@ -414,7 +555,35 @@ while running:
     pygame.draw.circle(screen, (0,0,0),(x + cord_yang4 -30,y + 410 + upyang4), 15)
     pygame.draw.circle(screen, (0,0,0),(x + cord_yang5 -30,y + 70 + upyang5), 15)
 
-    #----------------------------------------------------------------------------
+    # JOSH OCAMPO ---------------------------------------------------------------------------------------
+    x = 0
+    y = 1440
+    width = 640
+    height = 480
+    
+    bark_x_ocampo -= 5
+    leaves_x_ocampo -= 5
+
+    # Must draw with reference to that coordinate
+    #car
+    pygame.draw.polygon(screen, (245, 32, 17), ((x, y+340), (x+10, y+280), (x+60, y+280), (x+65, y+250), (x+150, y+250), (x+200, y+290), (x+290, y+300), (x+300, y+340)))
+    pygame.draw.polygon(screen, (15, 245, 252), ((x+67, y+280), (x+72, y+255), (x+143, y+255), (x+190, y+290)))
+    pygame.draw.rect(screen, (245, 32, 17), (x+110, y+250, 7, 40))
+    pygame.draw.polygon(screen, (46, 44, 44), ((x+30, y+340), (x+67, y+310), (x+100, y+340),(x+67, y+370)))
+    pygame.draw.polygon(screen, (46, 44, 44), ((x+210, y+340), (x+247, y+310), (x+280, y+340),(x+247, y+370)))
+
+    #tree
+    pygame.draw.rect(screen, (105, 71, 13), (bark_x_ocampo + 90, bark_y_ocampo - 100, 35, 250))
+    pygame.draw.circle(screen, (EVERGREEN), (leaves_x_ocampo, leaves_y_ocampo), 40)
+    pygame.draw.circle(screen, (DARK_GREEN), (leaves_x_ocampo + 25, leaves_y_ocampo - 30), 37)
+    pygame.draw.circle(screen, (EVERGREEN), (leaves_x_ocampo + 65, leaves_y_ocampo - 20), 50)
+    pygame.draw.circle(screen, (EVERGREEN), (leaves_x_ocampo + 65, leaves_y_ocampo + 20), 40)
+    pygame.draw.circle(screen, (DARK_GREEN), (leaves_x_ocampo + 35, leaves_y_ocampo + 40), 40)
+    pygame.draw.circle(screen, (DARK_GREEN), (leaves_x_ocampo + 95, leaves_y_ocampo + 30), 40)
+    if leaves_x_ocampo == -100: 
+        bark_x_ocampo = 640 
+        leaves_x_ocampo = 695
+    # ----------------------------------------------------------------------------------------
 
     # Must have these coordinates
     x = 1920
