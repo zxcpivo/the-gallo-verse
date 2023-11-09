@@ -204,7 +204,32 @@ polygon_ocampo4 = [
 (x+280, y+340),
 (x+247, y+370)
 ]
-# ------------------
+# Lucas -----------------
+
+asteroid_x_p = 0
+asteroid_y_p = 0
+
+asteroid_2_x_p = 0 
+asteroid_2_y_p = 0
+
+smallhole_1_x_p = 20
+smallhole_1_y_p = 10
+
+smallhole_2_x_p = -20
+smallhole_2_y_p = -10
+
+smallhole_3_x_p = 20
+smallhole_3_y_p = -20
+
+smallhole_4_x_p = -5
+smallhole_4_y_p = 30
+
+ufo_body_x_p  = 0
+ufo_body_y_p = 0 
+
+line1_x_p = 0 
+
+#-------------------
 
 running = True
 while running:
@@ -474,6 +499,84 @@ while running:
     #eyes
     pygame.draw.ellipse(screen,"black",(olivia_cat_x+123,olivia_cat_y+380,6,8))
     pygame.draw.ellipse(screen,"black",(olivia_cat_x+151,olivia_cat_y+380,6,8))
+
+    # Lucas -----------------------------------------------------------
+
+    asteroid_x_p += 1
+    asteroid_y_p += 1
+    smallhole_1_x_p += 1
+    smallhole_1_y_p += 1
+    smallhole_2_x_p += 1
+    smallhole_2_y_p += 1
+    smallhole_3_x_p += 1
+    smallhole_3_y_p += 1
+    smallhole_4_x_p += 1
+    smallhole_4_y_p += 1
+    asteroid_2_x_p += 1.5
+    asteroid_2_y_p += 1.5
+    ufo_body_x_p += 1
+    line1_x_p += 1
+    
+    x = 0
+    y = -1
+    width = 640
+    height = 480
+    circle_list_p = []
+    for i in range(40):
+        circle_p = {
+            'x_p': random.randint(x, x + 640),
+            'y_p': random.randint(y, y + 480),
+            'radius_p': random.randint(1,4)
+        }
+        circle_list_p.append(circle_p)
+    ufo_body_y_p = int((HEIGHT - 200) / 2 + math.sin(ufo_body_x_p / 100) * 100)
+    line1_y_p = int((HEIGHT - 200) / 2 + math.sin(line1_x_p / 100) * 100)
+    flame_variation_1_p = random.randint(-5, 5)  
+    if asteroid_y_p - 50 >= HEIGHT or asteroid_x_p - 50 >= WIDTH:
+      asteroid_x_p = x
+      asteroid_y_p = y
+      smallhole_1_x_p = x + 20
+      smallhole_1_y_p = y + 20
+      smallhole_2_x_p = x - 20
+      smallhole_2_y_p = y - 10
+      smallhole_3_x_p = x + 20
+      smallhole_3_y_p = y - 20
+      smallhole_4_x_p = x - 5
+      smallhole_4_y_p = y + 30
+    if asteroid_2_y_p >= HEIGHT or asteroid_2_x_p >= WIDTH:
+      asteroid_2_x_p = x
+      asteroid_2_y_p = y 
+    if ufo_body_y_p >= HEIGHT or ufo_body_x_p >= WIDTH:
+      ufo_body_x_p = x 
+      ufo_body_y_p = y
+      line1_x_p = x
+      line1_y_p = y
+    pygame.draw.rect(screen, (20, 20, 20), (x, y, width, height))
+# STARS
+    for circle_p in circle_list_p:  
+      pygame.draw.circle(screen, (255, 255, 255), (x + circle_p['x_p'], y + circle_p['y_p']), circle_p['radius_p'])
+# PLANET
+    pygame.draw.circle(screen, (20, 20, 160), (x + 30, y + 200), 10)
+    pygame.draw.polygon(screen, (20, 160, 20), [(x + 31, y + 202), (x + 34, y + 200), (x + 36, y + 202), (x + 30, y + 210), (x + 28, y + 202)])
+    pygame.draw.polygon(screen, (20, 160, 20), [(x + 25, y + 195), (x + 28, y + 194), (x + 30, y + 197), (x + 24, y + 199), (x + 22, y + 202)])
+# PLANET 2
+    pygame.draw.circle(screen, (201, 28, 40), (x + 300, y + 100), 10)
+    pygame.draw.polygon(screen, (227, 151, 70), [(x + 301, y + 102), (x + 306, y + 102), (x + 300, y + 110)])
+    pygame.draw.polygon(screen, (227, 151, 70), [(x + 295, y + 95), (x + 300, y + 97), (x + 294, y + 99), (x + 292, y + 102)])
+# UFO
+    pygame.draw.ellipse(screen, (173, 169, 163), (x + ufo_body_x_p, y + ufo_body_y_p + 100, 50, 20), 0)
+    pygame.draw.arc(screen, (67, 153, 91), (x + ufo_body_x_p + 8, y + ufo_body_y_p + 90, 33, 40), 0, 3.14, 300)
+    pygame.draw.line(screen, (123, 237, 119), (x +  line1_x_p +10, y + line1_y_p + 125), (x + line1_x_p, y + line1_y_p + 140), 3) 
+    pygame.draw.line(screen, (123, 237, 119), (x +  line1_x_p + 25, y + line1_y_p + 127), (x + 25 + line1_x_p, y + line1_y_p + 142), 3) 
+    pygame.draw.line(screen, (123, 237, 119), (x +  line1_x_p + 40, y + line1_y_p + 125), (x + 50 + line1_x_p, y + line1_y_p + 140), 3) 
+# ASTEROID 1 (BIG ONE)
+    pygame.draw.polygon(screen, (84, 200, 204), [(x + asteroid_x_p, y + asteroid_y_p - 50), (x + asteroid_x_p - 50, y + asteroid_y_p), (x + asteroid_x_p - 100 + flame_variation_1_p, y + asteroid_y_p - 100)])
+    pygame.draw.polygon(screen, (93, 144, 158), [(x + asteroid_x_p, y + asteroid_y_p - 50), (x + asteroid_x_p - 50, y + asteroid_y_p), (x + asteroid_x_p - 75 + flame_variation_1_p, y + asteroid_y_p - 75)])
+    pygame.draw.circle(screen, (140, 129, 116), (x + asteroid_x_p, y + asteroid_y_p), 50)
+    pygame.draw.circle(screen, (89, 85, 80), (x + smallhole_1_x_p, y + smallhole_1_y_p), 10)
+    pygame.draw.circle(screen, (89, 85, 80), (x + smallhole_2_x_p, y + smallhole_2_y_p), 20)
+    pygame.draw.circle(screen, (89, 85, 80), (x + smallhole_3_x_p, y + smallhole_3_y_p), 7)
+    pygame.draw.circle(screen, (89, 85, 80), (x + smallhole_4_x_p, y + smallhole_4_y_p), 9)    
 
     # Youlchan --------------------------------------------------------
 
