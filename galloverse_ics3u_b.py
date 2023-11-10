@@ -169,7 +169,7 @@ circle_y_tren = 200
 direction_x = 1
 
 #-------------------------------------
-gloria_x = 0
+gloria_x = 640
 gloria_y = 0
 gloria_width = 640
 gloria_height = 480
@@ -691,12 +691,12 @@ while running:
     screen.blit(scaled_text, (x + width//2 - scaled_text.get_width()//2, y + height//2 - scaled_text.get_height()//2))
 
     #-------------------------------------------------------------------------------------------------
-    if circle_y_gloria <= 190:
+    if circle_y_gloria <= gloria_y + 190:
         circle_x_gloria += 1
         circle_y_gloria += 2
     print(gloria_frames)
     gloria_frames += 1
-    if gloria_frames % 185 == 0:
+    if gloria_frames % 130 == 0:
         circle_y_gloria = gloria_y
         circle_x_gloria = gloria_x
         crash_gloria = False
@@ -704,7 +704,7 @@ while running:
     pygame.draw.rect(screen, (255, 255, 255), (gloria_x, gloria_y, gloria_width, gloria_height))
     pygame.draw.rect(screen, (0, 0, 0), (gloria_x, gloria_y, gloria_width, gloria_height), 7)
 
-    pygame.draw.circle(screen, (251, 236, 93), (gloria_x + circle_x_gloria, gloria_y + circle_y_gloria), 30)
+    pygame.draw.circle(screen, (251, 236, 93), (circle_x_gloria, circle_y_gloria), 30)
     pygame.draw.circle(screen, (255, 0, 0), (gloria_x + 200, gloria_y + 40), 10)
     pygame.draw.circle(screen, (255, 0, 0), (gloria_x + 350, gloria_y + 70), 4)
     pygame.draw.circle(screen, (255, 0, 0), (gloria_x + 500, gloria_y + 200), 7)
@@ -724,7 +724,7 @@ while running:
         (gloria_x + 422, gloria_y + 85)
     ]
     pygame.draw.polygon(screen, (255, 0, 0), (star))
-    
+
     # skyscraper
     pygame.draw.rect(screen, (255, 255, 255), (gloria_x + 35, gloria_y + 200, 50, 300))
     pygame.draw.rect(screen, (0, 0, 0), (gloria_x + 35, gloria_y + 200, 50, 300), 5)
@@ -735,7 +735,7 @@ while running:
     spacing = 10
     number_of_bars = 5
     width1_window = 5
-    while window1_x < (width1_window + spacing) * number_of_bars:
+    while window1_x < (width1_window + spacing) * number_of_bars + gloria_x:
         pygame.draw.rect(screen, (0, 0, 0), (window1_x, gloria_y + 210, width1_window, 14))
         pygame.draw.rect(screen, (0, 0, 0), (window1_x, gloria_y + 240, width1_window, 14))
         pygame.draw.rect(screen, (0, 0, 0), (window1_x, gloria_y + 270, width1_window, 14))
@@ -746,7 +746,7 @@ while running:
         pygame.draw.rect(screen, (0, 0, 0), (window1_x, gloria_y + 420, width1_window, 14))
         pygame.draw.rect(screen, (0, 0, 0), (window1_x, gloria_y + 450, width1_window, 14))
         window1_x += spacing
-    
+
     #meteor crash
     meteor_points = [
         (gloria_x + 72, gloria_y + 217),
@@ -757,9 +757,9 @@ while running:
         (gloria_x + 68, gloria_y + 185),
         (gloria_x + 72, gloria_y + 201),
         (gloria_x + 53, gloria_y + 203)
-        
+
     ]
-    if circle_y_gloria == 190:
+    if circle_y_gloria == gloria_y + 190:
         crash_gloria = True
     if crash_gloria == True:
         pygame.draw.polygon(screen, (255, 140, 0), (meteor_points))
