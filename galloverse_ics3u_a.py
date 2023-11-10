@@ -229,6 +229,32 @@ ufo_body_y_p = 0
 
 line1_x_p = 0 
 
+#Jaden Lam-------------------
+#Stars
+x_lam = random.randrange(10, 50)
+y_lam = random.randrange(10, 50)
+size_lam = random.randrange(1, 3)
+
+#Stars' Colour
+white_r_lam = 255
+white_g_lam = 255
+white_b_lam = 255
+    
+blue_g_lam = 200
+blue_b_lam = 255
+    
+red_r_lam = 255
+    
+yellow_r_lam = 255
+yellow_g_lam = 255
+
+#Space Ship
+tri_x_lam = 0
+tri_y_lam = 0
+tri_r_lam = 255
+tri_g_lam = 255
+tri_b_lam = 255
+
 #-------------------
 
 running = True
@@ -248,7 +274,6 @@ while running:
                 dx, dy = event.rel
                 camera_x += -dx/scale
                 camera_y += -dy/scale
-
     # DRAWING
     screen.fill((255, 255, 255))
     window.fill((100, 100, 100))
@@ -686,6 +711,55 @@ while running:
     if leaves_x_ocampo == -100: 
         bark_x_ocampo = 640 
         leaves_x_ocampo = 695
+
+    #Jaden Lam-------------------------------------------------------------------------------
+    x = 640 * 4
+    y = 0
+    
+    #Star Blinking
+    blink_lam = random.randrange(1, 16)
+    
+    if blink_lam == 1:
+        white_r_lam = 0
+        white_g_lam = 0
+        white_b_lam = 0
+    if blink_lam == 2:
+        blue_g_lam = 0
+        blue_b_lam = 0
+    if blink_lam == 3:
+        red_r_lam = 0
+    if blink_lam == 4:
+        yellow_r_lam = 0
+        yellow_g_lam = 0
+
+    #Space Ship
+    tri_x_lam += 2
+    if tri_r_lam != 0:
+        tri_r_lam -= 1
+        tri_g_lam -= 1
+        tri_b_lam -= 1
+    
+    #White Stars
+    pygame.draw.circle(screen, (white_r_lam, white_g_lam, white_b_lam), (x+x_lam+100, y+y_lam+150), size_lam-1)
+    pygame.draw.circle(screen, (white_r_lam, white_g_lam, white_b_lam), (x+x_lam+360, y+y_lam+300), size_lam-2)
+    pygame.draw.circle(screen, (white_r_lam, white_g_lam, white_b_lam), (x+x_lam+150, y+y_lam+40), size_lam+1)
+    #Blue Stars
+    pygame.draw.circle(screen, (0, blue_g_lam, blue_b_lam), (x+x_lam+200, y+y_lam+260), size_lam-2)
+    pygame.draw.circle(screen, (0, blue_g_lam, blue_b_lam), (x+x_lam, y+y_lam+120), size_lam)
+    pygame.draw.circle(screen, (0, blue_g_lam, blue_b_lam), (x+x_lam+450, y+y_lam+220), size_lam+1)
+    #Red Stars
+    pygame.draw.circle(screen, (red_r_lam, 0, 0), (x+x_lam+400, y+y_lam+120), size_lam+2)
+    pygame.draw.circle(screen, (red_r_lam, 0, 0), (x+x_lam+160, y+y_lam+250), size_lam-1)
+    pygame.draw.circle(screen, (red_r_lam, 0, 0), (x+x_lam+300, y+y_lam+180), size_lam)
+    #Yellow Stars
+    pygame.draw.circle(screen, (yellow_r_lam, yellow_g_lam, 0), (x+x_lam+210, y+y_lam+240), size_lam)
+    pygame.draw.circle(screen, (yellow_r_lam, yellow_g_lam, 0), (x+x_lam+490, y+y_lam+60), size_lam-2)
+    pygame.draw.circle(screen, (yellow_r_lam, yellow_g_lam, 0), (x+x_lam+30, y+y_lam+280), size_lam+1)
+    
+    #Space Ship
+    pygame.draw.polygon(screen, (tri_r_lam, tri_g_lam, tri_b_lam), [(x+tri_x_lam, y+tri_y_lam+150), (x+tri_x_lam, y+tri_y_lam+200), (x+tri_x_lam+100, y+tri_y_lam+175)])
+    
+        
     # ----------------------------------------------------------------------------------------
 
     # Must have these coordinates
