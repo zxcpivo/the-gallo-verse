@@ -517,8 +517,8 @@ while running:
     ufo_body_x_p += 1
     line1_x_p += 1
     
-    x = 0
-    y = -480
+    x = 1280
+    y = 960
     width = 640
     height = 480
     circle_list_p = []
