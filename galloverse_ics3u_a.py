@@ -256,7 +256,14 @@ tri_g_lam = 255
 tri_b_lam = 255
 
 #-------------------
+car_x_matros = 0
+parking_lines = 0
+road_lines1 = 0
+road_lines2 = 0
+sidewalk_lines1 = 0
+sidewalk_lines2 = 0
 
+#-------------------
 running = True
 while running:
     # GALLO VERSE SPECIFIC ----------------------------------------------------------------
@@ -778,7 +785,172 @@ while running:
     screen.blit(welcome_text_gallo, (x + width//2 - welcome_text_gallo.get_width()//2, y + height//3 - welcome_text_gallo.get_height()//2))
     scaled_text = pygame.transform.scale(text_gallo, (text_gallo.get_width() * text_scale_gallo, text_gallo.get_height() * text_scale_gallo))
     screen.blit(scaled_text, (x + width//2 - scaled_text.get_width()//2, y + height//2 - scaled_text.get_height()//2))
+
+    # Christian -------------------------------------------------------------------------------------
+    x = 3840
+    y = 2880
+    width = 640
+    height = 480
     
+    car_x_matros += 3
+    
+    if car_x_matros > width:
+        car_x_matros = 0
+    
+    # Rather than screen.fill, draw a rectangle
+    pygame.draw.rect(screen, (0, 66, 0), (x, y, width, height-200))
+
+    # Parking Lot
+    # Background Parking
+    pygame.draw.rect(screen, (80, 80, 80), (x, y+200, width-300, height))
+
+    # Parking Lines
+    while parking_lines < (width-300):
+        pygame.draw.rect(screen, (255, 255, 255), (x+parking_lines, y+350, width-635, height-350))
+        parking_lines += 50
+    pygame.draw.rect(screen, (255, 255, 255), (x, y+415, width-337, height-475))
+
+    # Road
+    # Sidewalk
+    pygame.draw.rect(screen, (166, 166, 166), (x, y+90, width, height-300))
+    pygame.draw.rect(screen, (166, 166, 166), (x+320, y, width-460, height))
+    while sidewalk_lines1 <= width:
+        pygame.draw.rect(screen, (150, 150, 150), (x+sidewalk_lines1, y+90, width-638, height-300))
+        sidewalk_lines1 += 30
+    while sidewalk_lines2 <= height:
+        pygame.draw.rect(screen, (150, 150, 150), (x+320, y+sidewalk_lines2, width-460, height-478))
+        sidewalk_lines2 += 30
+    
+    # Road Entrance to Lot
+    road_entrance = [
+        (x+312, y+270),
+        (x+355, y+270),
+        (x+355, y+330),
+        (x+312, y+330)
+    ]
+    pygame.draw.polygon(screen, (80, 80, 80), road_entrance)
+    
+    # Main road
+    pygame.draw.rect(screen, (80, 80, 80), (x, y+120, width, height-360))
+    pygame.draw.rect(screen, (0, 0, 0), (x, y+130, width, height-380))
+    while road_lines1 <= width:
+        pygame.draw.rect(screen, (255, 255, 0), (x+road_lines1, y+175, width-610, height-475))   
+        road_lines1 += 50
+    pygame.draw.rect(screen, (80, 80, 80), (x+350, y, width-520, height))
+    pygame.draw.rect(screen, (0, 0, 0), (x+360, y, width-540, height))
+    while road_lines2 <= height:
+        pygame.draw.rect(screen, (255, 255, 0), (x+405, y+road_lines2, width-635, height-450))
+        road_lines2 += 50
+    road_center_matros = [
+        (x+350, y+130),
+        (x+470, y+130),
+        (x+470, y+229),
+        (x+350, y+229)
+    ]
+    pygame.draw.polygon(screen, (0, 0, 0), road_center_matros)
+
+
+
+    # Car 1
+    car_body_matros = [
+        (x + car_x_matros, y + 191),
+        (x + 80 + car_x_matros, y + 191),
+        (x + 80 + car_x_matros, y + 220),
+        (x + car_x_matros, y + 220)
+    ]
+
+    car_frontlight1 = [
+        (x + 75 + car_x_matros, y + 195),
+        (x + 75 + car_x_matros, y + 202),
+        (x + 80 + car_x_matros, y + 202),
+        (x + 80 + car_x_matros, y + 195)
+    ]
+
+    car_frontlight2 = [
+        (x + 75 + car_x_matros, y+206),
+        (x + 75 + car_x_matros, y+213),
+        (x + 80 + car_x_matros, y+213),
+        (x + 80 + car_x_matros, y+206)
+    ]
+
+    car_backlight1 = [
+        (x + car_x_matros, y + 191),
+        (x + car_x_matros, y + 198),
+        (x + 5 + car_x_matros, y + 198),
+        (x + 5 + car_x_matros, y + 191)
+    ]
+
+    car_backlight2 = [
+        (x + car_x_matros, y + 220),
+        (x + car_x_matros, y + 213),
+        (x + 5 + car_x_matros, y + 213),
+        (x + 5 + car_x_matros, y + 220)
+    ]
+
+    car_windshield = [
+        (x + 68 + car_x_matros, y + 194),
+        (x + 54 + car_x_matros, y + 199),
+        (x + 54 + car_x_matros, y + 212),
+        (x + 68 + car_x_matros, y + 217)
+        
+    ]
+    
+    pygame.draw.polygon(screen, (0, 99, 0), car_body_matros)
+    pygame.draw.polygon(screen, (255, 255, 0), car_frontlight1)
+    pygame.draw.polygon(screen, (255, 255, 0), car_frontlight2)
+    pygame.draw.polygon(screen, (255, 0, 0), car_backlight1)
+    pygame.draw.polygon(screen, (255, 0, 0), car_backlight2)
+    pygame.draw.polygon(screen, (0, 0, 99), car_windshield)
+
+    # Car 2
+    b_car_body_matros = [
+        (x + 450, y + 357),
+        (x + 421, y + 357),
+        (x + 421, y + 437),
+        (x + 450, y + 437)
+    ]
+
+    b_car_frontlight1 = [
+        (x + 425, y + 357),
+        (x + 432, y + 357),
+        (x + 432, y + 361),
+        (x + 425, y + 361)
+    ]
+
+    b_car_frontlight2 = [
+        (x+437, y+357),
+        (x+444, y+357),
+        (x+444, y+361),
+        (x+437, y+361)
+    ]
+
+    b_car_backlight1 = [
+        (x + 421, y + 437),
+        (x + 428, y + 437),
+        (x + 428, y + 432),
+        (x + 421, y + 432)
+    ]
+
+    b_car_backlight2 = [
+        (x + 450, y + 437),
+        (x + 443, y + 437),
+        (x + 443, y + 432),
+        (x + 450, y + 432)
+    ]
+
+    b_car_windshield = [
+        (x + 424, y + 370),
+        (x + 447, y + 370),
+        (x + 442, y + 385),
+        (x + 429, y + 385)
+    ]
+
+    pygame.draw.polygon(screen, (204, 102, 0), b_car_body_matros)
+    pygame.draw.polygon(screen, (255, 255, 0), b_car_frontlight1)
+    pygame.draw.polygon(screen, (255, 255, 0), b_car_frontlight2)
+    pygame.draw.polygon(screen, (255, 0, 0), b_car_backlight1)
+    pygame.draw.polygon(screen, (255, 0, 0), b_car_backlight2)
+    pygame.draw.polygon(screen, (0, 0, 99), b_car_windshield)
 
 
     # LEAVE HERE --------------------------------------------
