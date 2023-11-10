@@ -7,6 +7,7 @@
   * [Your outside-the-loop code](#your-outside-the-loop-code)
   * [Your inside-the-loop code](#your-inside-the-loop-code)
   * [Saving your code](#saving-your-code)
+  * [Resolving conflicts](#resolving-conflicts)
   * [Editing after pull request](#editing-after-pull-request)
 
 ## General info
@@ -70,6 +71,34 @@ When you complete the commit, you will be brought to a summary page where you ca
 Add a title and a description before clicking "Create pull request" one last time.
 
 ![image](https://github.com/MrGallo/the-gallo-verse/assets/11080017/bd8f1199-97c6-46e6-bc38-2cbceca2bf4c)
+
+When you submit a pull request, you should see:
+
+![image](https://github.com/MrGallo/the-gallo-verse/assets/11080017/535aa954-7954-4220-930b-9950882f390c)
+
+If not, check out the [Resolving conflicts](#resolving-conflicts) section below.
+
+## Resolving conflicts
+There is a good chance, because we are editing different (unsynced) versions of the file, there will be a "merge conflict" as shown below. Click the "Resolve conflicts" button.
+
+![image](https://github.com/MrGallo/the-gallo-verse/assets/11080017/a7b9c028-58a8-46d5-acdd-15d937911f6c)
+
+
+At the top of the code, GitHub will tell you how many conflicts to fix and they give you convenient previous/next buttons to help you find them. When they are all resolved, come back up here to click the "mark as resolved" button.
+
+![image](https://github.com/MrGallo/the-gallo-verse/assets/11080017/c84a81ec-0424-4749-b951-4baf48849d29)
+
+### Fixing the conflicts
+
+![image](https://github.com/MrGallo/the-gallo-verse/assets/11080017/bf9245a2-9be9-4bee-b753-80bb700e7634)
+
+Your changes will appear on the *top* and other person's code will be *below*. You need to choose which code to keep or to keep both. Make sure to delete those lines marked with the `*`s. 
+
+### Mark as resolved, commit
+When you are done, go back to the top to mark as resolved and commit directly to the branch. The pull request should update and now show you:
+
+![image](https://github.com/MrGallo/the-gallo-verse/assets/11080017/d8e54a42-54eb-4d2a-ac23-1afe37839c65)
+
 
 ## Editing after pull request
 You can edit the pull request code directly if you need to. Just go to 1. "Files Changed", and then 2. the three dots and 3. "Edit file"
