@@ -518,7 +518,7 @@ while running:
     line1_x_p += 1
     
     x = 0
-    y = -1
+    y = -480
     width = 640
     height = 480
     circle_list_p = []
