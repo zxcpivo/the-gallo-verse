@@ -168,6 +168,29 @@ circle_x_tren = 200
 circle_y_tren = 200
 direction_x = 1
 
+# ----------------------
+#ayda lava
+ayda_amplitude = 10
+ayda_frequency = 0.03
+ayda_phase = 0
+
+#ayda colours
+AYDA_SKY = (250, 180, 150)
+AYDA_LAVA = (255, 95, 0)
+AYDA_BROWN = (94, 69, 54)
+AYDA_RED = (200, 2, 2)
+AYDA_GREY = (40, 60, 60)
+AYDA_GREEN = (10, 150, 10)
+AYDA_BLUE = (46,103,248)
+
+#ayda text
+ayda_font = pygame.font.Font('freesansbold.ttf', 40)
+ayda_text = ayda_font.render("I HAVE THE HIGH GROUND.", True, AYDA_RED, AYDA_SKY)
+ayda_textRect = ayda_text.get_rect()
+ayda_textRect.topleft = (WIDTH // 2, HEIGHT // 2)
+# ------------------
+
+
 running = True
 while running:
     # GALLO VERSE SPECIFIC ----------------------------------------------------------------
@@ -682,6 +705,50 @@ while running:
     screen.blit(welcome_text_gallo, (x + width//2 - welcome_text_gallo.get_width()//2, y + height//3 - welcome_text_gallo.get_height()//2))
     scaled_text = pygame.transform.scale(text_gallo, (text_gallo.get_width() * text_scale_gallo, text_gallo.get_height() * text_scale_gallo))
     screen.blit(scaled_text, (x + width//2 - scaled_text.get_width()//2, y + height//2 - scaled_text.get_height()//2))
+
+    #----------------------
+    #AYDA'S REIGN OF TERROR
+    x = 640*4
+    y = 480*3
+    width = 640
+    height = 480
+    
+    #BACKGROUND
+    pygame.draw.rect(screen, (AYDA_SKY), (x, y, width, height))
+        
+    #LAND
+    pygame.draw.ellipse(screen, AYDA_BROWN, (x + width // 4, y + height // 4, 300, 300), width=0)
+    
+    #SHREKI-WAN KENOBI
+    pygame.draw.ellipse(screen, AYDA_GREEN, (x + width//2 - 30, y + height//2-140, 30, 40), width=0)
+    xpoint = x + width//2-15
+    pygame.draw.line(screen, AYDA_GREEN, (xpoint+15, y + height//2-140), (xpoint, y + height//2-120), width=3)
+    pygame.draw.line(screen, AYDA_GREEN, (xpoint-15, y + height//2-140), (xpoint, y + height//2-120), width=3)
+    
+    #LIGHTSABER
+    x1, y1 = x + width // 2 - 20, y + height // 2 - 120
+    x2, y2 = x + width // 2 - 45, y + height // 2 - 140
+    saber_x2 = x1 + (x2 - x1) / 4
+    saber_y2 = y1 + (y2 - y1) / 4
+    pygame.draw.line(screen, (AYDA_BLUE), (x1, y1), (x2, y2), width=3) #the laser
+    pygame.draw.line(screen, (0, 0, 0), (x1, y1), (saber_x2, saber_y2), width=3) #the handle
+    
+    #WAVE
+    wave_points = []
+    for a in range(x, x + width, 5): 
+        x_wave = a - x 
+        y_wave = height // 2 + ayda_amplitude * math.sin(ayda_frequency * x_wave + ayda_phase)
+        wave_points.append((x_wave + x, y_wave + y))
+        pygame.draw.rect(screen, AYDA_LAVA, (x_wave + x, y_wave + y, 5, 5))
+    
+    wave_points.append((x + width, y + height))
+    wave_points.append((x, y + height))
+    pygame.draw.polygon(screen, AYDA_LAVA, wave_points)
+    
+    ayda_phase += 0.1
+    
+    #TEXT
+    screen.blit(ayda_text, (x+width//2 - ayda_text.get_width()//2, y+20))
     
 
 
