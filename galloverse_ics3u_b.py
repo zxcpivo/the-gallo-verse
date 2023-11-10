@@ -596,29 +596,8 @@ while running:
         if (x + rock_x_anthony) < (x + 540):
             pygame.draw.circle(screen, (225, 0, 0), (x + 540, y + 290), 50)
             pygame.draw.circle(screen, (225, 100, 0), (x + 540, y + 290), 30)
-    
     # ----------------------------------------------------------------------------------------
 
-    # Must have these coordinates
-    x = 1920
-    y = 1440
-    width = 640
-    height = 480
-
-    frames_gallo += 1
-    text_scale_gallo = abs((math.sin(frames_gallo / 30) - 3) / 3)
-
-    # Rather than screen.fill, draw a rectangle
-    screen.blit(bg_gallo, (x, y))
-
-    screen.blit(welcome_text_gallo, (
-        x + width // 2 - welcome_text_gallo.get_width() // 2, y + height // 3 - welcome_text_gallo.get_height() // 2))
-    scaled_text = pygame.transform.scale(text_gallo, (
-        text_gallo.get_width() * text_scale_gallo, text_gallo.get_height() * text_scale_gallo))
-    screen.blit(scaled_text,
-                (x + width // 2 - scaled_text.get_width() // 2, y + height // 2 - scaled_text.get_height() // 2))
-    
-    # ----------------------------------------------------------------------------------------
     x = 3200
     y = 2400
 
@@ -628,7 +607,7 @@ while running:
     ellipse_x_adeline += 1
 
     if ellipse_x_adeline == x + width:
-        ellipse_x_adeline = 0
+        ellipse_x_adeline = x
 
     # CLOUD 1 (dark blue)
     pygame.draw.ellipse(screen, (0, 0, 255), (ellipse_x_adeline + x, ellipse_y_adeline + y, 135, 65))
@@ -657,6 +636,29 @@ while running:
     pygame.draw.line(screen, (0, 0, 0), (line_x_adeline + x, line_y_adeline + y + 50), (line_x_adeline + x + 30, line_y_adeline + y + 80), width = 5)
     pygame.draw.line(screen, (0, 0, 0), (line_x_adeline + x, line_y_adeline + y + 50), (line_x_adeline + x - 30, line_y_adeline + y + 80), width = 5)
 
+    # ----------------------------------------------------------------------------------------
+
+    # Must have these coordinates
+    x = 1920
+    y = 1440
+    width = 640
+    height = 480
+
+    frames_gallo += 1
+    text_scale_gallo = abs((math.sin(frames_gallo / 30) - 3) / 3)
+
+    # Rather than screen.fill, draw a rectangle
+    screen.blit(bg_gallo, (x, y))
+
+    screen.blit(welcome_text_gallo, (
+        x + width // 2 - welcome_text_gallo.get_width() // 2, y + height // 3 - welcome_text_gallo.get_height() // 2))
+    scaled_text = pygame.transform.scale(text_gallo, (
+        text_gallo.get_width() * text_scale_gallo, text_gallo.get_height() * text_scale_gallo))
+    screen.blit(scaled_text,
+                (x + width // 2 - scaled_text.get_width() // 2, y + height // 2 - scaled_text.get_height() // 2))
+    
+    # ----------------------------------------------------------------------------------------
+  
 
     # LEAVE HERE --------------------------------------------
     screen_width, screen_height = screen.get_size()
