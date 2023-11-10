@@ -726,7 +726,7 @@ while running:
     # Rather than screen.fill, draw a rectangle
     pygame.draw.rect(screen, (0, 66, 0), (x, y, width, height-200))
 
-# Parking Lot
+    # Parking Lot
     # Background Parking
     pygame.draw.rect(screen, (80, 80, 80), (x, y+200, width-300, height))
 
@@ -736,7 +736,7 @@ while running:
         parking_lines += 50
     pygame.draw.rect(screen, (255, 255, 255), (x, y+415, width-337, height-475))
 
-# Road
+    # Road
     # Sidewalk
     pygame.draw.rect(screen, (166, 166, 166), (x, y+90, width, height-300))
     pygame.draw.rect(screen, (166, 166, 166), (x+320, y, width-460, height))
@@ -777,7 +777,7 @@ while running:
 
 
 
-# Car 1
+    # Car 1
     car_body_matros = [
         (x + car_x_matros, y + 191),
         (x + 80 + car_x_matros, y + 191),
@@ -828,7 +828,7 @@ while running:
     pygame.draw.polygon(screen, (255, 0, 0), car_backlight2)
     pygame.draw.polygon(screen, (0, 0, 99), car_windshield)
 
-# Car 2
+    # Car 2
     b_car_body_matros = [
         (x + 450, y + 357),
         (x + 421, y + 357),
