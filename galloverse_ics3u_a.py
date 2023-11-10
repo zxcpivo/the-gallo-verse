@@ -64,6 +64,12 @@ switch_maggie = "right"
 
 # ----------------------
 
+sana_monster_x = 0
+sana_monster_y = 240
+switch_sana = "right"
+
+# ----------------------
+
 duncan_glow_x, duncan_glow_y, duncan_glow_radius = 315, 220, 70
 duncan_vignette_x, duncan_vignette_y, duncan_vignette_radius = 320, 240, 250
 
@@ -686,8 +692,63 @@ while running:
     if leaves_x_ocampo == -100: 
         bark_x_ocampo = 640 
         leaves_x_ocampo = 695
-    # ----------------------------------------------------------------------------------------
+   
+    # SANA ----------------------------------------------------------------------------------------
 
+    x = 0
+    y = 0
+    width = 640
+    height = 480
+
+    if sana_monster_x > 640:
+        switch_sana = "left"
+    elif sana_monster_x < 0:
+        switch_sana = "right"
+
+    if switch_sana == "right":
+        sana_monster_x += 3
+    else:
+        sana_monster_x -=3
+    
+    
+
+    # Rather than screen.fill, draw a rectangle
+    pygame.draw.rect(screen, (205,129,98), (x, y, width, height))
+
+    # Must draw with reference to that coordinate
+    #chocolate chips
+    pygame.draw.circle(screen, (94,38,18), (x + 100, y + 100), 20)
+    pygame.draw.circle(screen, (94,38,18), (x + 400, y + 50), 20)
+    pygame.draw.circle(screen, (94,38,18), (x + 300, y + 200), 20)
+    pygame.draw.circle(screen, (94,38,18), (x + 200, y + 370), 20)
+    pygame.draw.circle(screen, (94,38,18), (x + 580, y + 320), 20)
+    #sprinkles
+    pygame.draw.line(screen, (255,48,48), (x + 60, y + 300), (x + 100, y + 380), width = 10) #red
+    pygame.draw.line(screen, (125,38,205), (x + 330, y + 340), (x + 360, y + 270), width = 10) #periwinkle
+    pygame.draw.line(screen, (255,62,150), (x + 455, y + 460), (x + 430, y + 390), width = 10) #pink
+    pygame.draw.line(screen, (10,245,255), (x + 420, y + 90), (x + 500, y + 80), width = 10) #cyan
+    pygame.draw.rect(screen, (255,236,139), (x + 30, y + 50, 10, 80)) #yellow
+    pygame.draw.rect(screen, (152,251,152), (x + 530, y + 390, 80, 10)) #green
+    pygame.draw.line(screen, (255,0,255), (x + 190, y + 120), (x + 270, y + 150), width = 10) #purple
+
+    #cookie crumbs loop
+    for i in range(18):
+        pygame.draw.circle(screen, (255,211,155), (x + i*40, 250), 5)
+        
+
+    #cookie monster animation
+    #face
+    pygame.draw.circle(screen, (1,161,201), (sana_monster_x, sana_monster_y), 45)
+    #mouth
+    pygame.draw.ellipse(screen, (0, 0, 0), (sana_monster_x - 5, sana_monster_y, 40, 25))
+    #eyes
+    pygame.draw.circle(screen, (255, 255, 255), (sana_monster_x + 25, sana_monster_y - 40), 17)
+    pygame.draw.circle(screen, (255, 255, 255), (sana_monster_x - 15, sana_monster_y - 40), 17)
+    #pupils
+    pygame.draw.circle(screen, (0,0,0), (sana_monster_x + 22, sana_monster_y - 43), 8)
+    pygame.draw.circle(screen, (0,0,0), (sana_monster_x - 12, sana_monster_y - 37), 8)
+
+    # ---------------------------------------------------------------------------------------------
     # Must have these coordinates
     x = 1920
     y = 1440
