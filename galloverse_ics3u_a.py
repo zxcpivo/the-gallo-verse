@@ -64,6 +64,13 @@ switch_maggie = "right"
 
 # ----------------------
 
+star_x_christine = 0
+star_y_christine = 0
+
+switch_christine = "right"
+
+#--------------------------
+
 duncan_glow_x, duncan_glow_y, duncan_glow_radius = 315, 220, 70
 duncan_vignette_x, duncan_vignette_y, duncan_vignette_radius = 320, 240, 250
 
@@ -396,7 +403,105 @@ while running:
     pygame.draw.circle(screen, (255, 255, 255), (x + ghost_x_maggie - 72, y + ghost_y_maggie + 115), 5)
     pygame.draw.circle(screen, (255, 255, 255), (x + ghost_x_maggie - 50, y + ghost_y_maggie + 115), 5)
 
+    #Christine ----------------------------
+    x = 0
+    y = 0
+    width = 640
+    height = 480
 
+    points_christine = [
+        (star_x_christine + 0, star_y_christine + 45),
+        (star_x_christine + 20, star_y_christine + 45),
+        (star_x_christine + 30, star_y_christine +25),
+        (star_x_christine + 40, star_y_christine + 45),
+        (star_x_christine + 60, star_y_christine + 45),
+      
+        (star_x_christine + 45, star_y_christine + 60),
+        (star_x_christine + 55, star_y_christine + 80),
+        (star_x_christine + 30, star_y_christine +65),
+        (star_x_christine + 5, star_y_christine + 80),
+        (star_x_christine + 15, star_y_christine + 60)
+    ]
+
+    roof_points = [
+        (x+165, y+170),
+        (x+250, y+200),
+        (x+485, y+170)
+    ]
+    
+    if star_x_christine > 640:
+        switch_christine = "left"
+    elif star_x_christine < 0:
+        switch_christine = "right"
+
+    if switch_christine == "right":
+        star_x_christine += 3
+    else:
+        star_x_christine -=3
+
+    #Background
+    pygame.draw.rect(screen, (152,245,255), (x, y, width, height))
+
+    #Rain?
+    for i in range(30):
+        pygame.draw.circle(screen, (255,187,255), (x+40, y+50+20*i), 3)
+        pygame.draw.circle(screen, (255,187,255), (x+90, y+50+20*i), 3)
+        pygame.draw.circle(screen, (221,160,221), (x+570, y+50+20*i), 3)
+        pygame.draw.circle(screen, (221,160,221), (x+60, y+50+20*i), 3)
+        pygame.draw.circle(screen, (255,187,255), (x+620, y+50+20*i), 3)
+        pygame.draw.circle(screen, (255,187,255), (x+530, y+50+20*i), 3)
+
+    #Clouds
+    pygame.draw.circle(screen, (255,225,255), (x+160, y+350), 35)
+    pygame.draw.circle(screen, (255,225,255), (x+200, y+350), 45)
+    pygame.draw.circle(screen, (255,225,255), (x+260, y+350), 65)
+    pygame.draw.circle(screen, (255,225,255), (x+300, y+350), 60)
+    pygame.draw.circle(screen, (255,225,255), (x+320, y+350), 65)
+    pygame.draw.circle(screen, (255,225,255), (x+360, y+350), 50)
+    pygame.draw.circle(screen, (255,225,255), (x+400, y+350), 65)
+    pygame.draw.circle(screen, (255,225,255), (x+460, y+350), 45)
+    pygame.draw.circle(screen, (255,225,255), (x+500, y+350), 35)
+
+    for i in range(5):
+        pygame.draw.circle(screen, (216,191,216), (x+0+45*i, y+50), 40)
+        pygame.draw.circle(screen, (255,225,255), (x+140+35*i, y+80), 35)
+
+    for i in range(3):
+        pygame.draw.circle(screen, (216,191,216), (x+530+45*i, y+80), 40)
+    for i in range(2):
+        pygame.draw.circle(screen, (255,225,255), (x+0+45*i, y+200), 40)
+
+    #House
+    pygame.draw.rect(screen, (255,182,193), (x+165, y+170, 320, 160))
+
+    #Outline
+    pygame.draw.line(screen, (171,130,255), (x+250, y+200), (x+250, y+350), width=2)
+    pygame.draw.line(screen, (171,130,255), (x+165, y+170), (x+165, y+340), width=2)
+    pygame.draw.line(screen, (171,130,255), (x+485, y+170), (x+485, y+350), width=2)
+    
+    #Windows
+    pygame.draw.line(screen, (171,130,255), (x+265, y+235), (x+470, y+210), width=30)    
+    pygame.draw.line(screen, (171,130,255), (x+190, y+215), (x+220, y+225), width=30)    
+    pygame.draw.line(screen, (171,130,255), (x+190, y+275), (x+220, y+285), width=30) 
+    pygame.draw.line(screen, (171,130,255), (x+265, y+290), (x+470, y+270), width=30) 
+       
+    #Roof
+    pygame.draw.polygon(screen, (171,130,255), roof_points)
+    
+    #Candle
+    pygame.draw.rect(screen, (75,0,130), (x+245, y+140, 10, 50))
+    pygame.draw.circle(screen, (255,215,0), (x+250, y+140), 10)
+
+    #Clouds
+    pygame.draw.circle(screen, (255,225,255), (x+320, y+350), 40)
+    pygame.draw.circle(screen, (255,225,255), (x+260, y+345), 30)
+    pygame.draw.circle(screen, (255,225,255), (x+200, y+350), 40)
+    pygame.draw.circle(screen, (255,225,255), (x+450, y+350), 45)
+    
+    #Star
+    pygame.draw.polygon(screen, (255,215,0), points_christine)
+
+    
     # DUNCAN -------------------------------
 
     x = 3200
