@@ -958,63 +958,63 @@ while running:
     # ----------------------------------------------------------------------------------------
 
     if arm_far_rhee is False:
-      if arm_l_a_rhee < 145:
-        arm_far_rhee = True
-      arm_l_a_rhee -= 1
-      arm_l_b_rhee -= 1
-      arm_l_y_a_rhee -= 1
-      arm_l_y_b_rhee -= 1
-      hand_l_rhee -= 1
-      hand_l_y_rhee -= 1
+        if arm_l_a_rhee < 145:
+            arm_far_rhee = True
+        arm_l_a_rhee -= 1
+        arm_l_b_rhee -= 1
+        arm_l_y_a_rhee -= 1
+        arm_l_y_b_rhee -= 1
+        hand_l_rhee -= 1
+        hand_l_y_rhee -= 1
     elif arm_far_rhee is True:
-      if arm_l_a_rhee > 165:
-        arm_far_rhee = False
-      arm_l_a_rhee += 1
-      arm_l_b_rhee += 1
-      arm_l_y_a_rhee += 1
-      arm_l_y_b_rhee += 1
-      hand_l_rhee += 1
-      hand_l_y_rhee += 1
+        if arm_l_a_rhee > 165:
+            arm_far_rhee = False
+        arm_l_a_rhee += 1
+        arm_l_b_rhee += 1
+        arm_l_y_a_rhee += 1
+        arm_l_y_b_rhee += 1
+        hand_l_rhee += 1
+        hand_l_y_rhee += 1
 
     if wave_a_rhee is False:
-      if arm_r_y_a_rhee < 149:
-        wave_a_rhee = True
-      if wave_b_rhee is False:
-        arm_r_a_rhee += 1
-        arm_r_b_rhee += 1
-        hand_r_rhee += 1
-        if arm_r_a_rhee > 335:
-          wave_b_rhee = True
-      arm_r_y_a_rhee -= 1
-      arm_r_y_b_rhee -= 1
-      hand_r_y_rhee -= 1
+        if arm_r_y_a_rhee < 149:
+            wave_a_rhee = True
+        if wave_b_rhee is False:
+            arm_r_a_rhee += 1
+            arm_r_b_rhee += 1
+            hand_r_rhee += 1
+            if arm_r_a_rhee > 335:
+                wave_b_rhee = True
+        arm_r_y_a_rhee -= 1
+        arm_r_y_b_rhee -= 1
+        hand_r_y_rhee -= 1
     elif wave_a_rhee is True:
-      if arm_r_a_rhee < 315:
-        wave_a_rhee = False
-      if arm_r_y_a_rhee > 245:
-        wave_b_rhee = False
-      if wave_b_rhee is False:
-        arm_r_a_rhee -= 1
-        arm_r_b_rhee -= 1
-        hand_r_rhee -= 1
-      arm_r_y_a_rhee += 1
-      arm_r_y_b_rhee += 1
-      hand_r_y_rhee += 1
+        if arm_r_a_rhee < 315:
+            wave_a_rhee = False
+        if arm_r_y_a_rhee > 245:
+            wave_b_rhee = False
+        if wave_b_rhee is False:
+            arm_r_a_rhee -= 1
+            arm_r_b_rhee -= 1
+            hand_r_rhee -= 1
+        arm_r_y_a_rhee += 1
+        arm_r_y_b_rhee += 1
+        hand_r_y_rhee += 1
 
     if blink_rhee is False:
-      if eye_b_rhee < 10:
-        blink_rhee = True
-      eye_a_rhee += 0.5
-      eye_b_rhee -= 0.5
-      eye_c_rhee += 0.25
-      eye_d_rhee -= 0.25
+        if eye_b_rhee < 10:
+            blink_rhee = True
+        eye_a_rhee += 0.5
+        eye_b_rhee -= 0.5
+        eye_c_rhee += 0.25
+        eye_d_rhee -= 0.25
     elif blink_rhee is True:
-      if eye_b_rhee > 25:
-        blink_rhee = False
-      eye_a_rhee -= 0.5
-      eye_b_rhee += 0.5
-      eye_c_rhee -= 0.25
-      eye_d_rhee += 0.25
+        if eye_b_rhee > 25:
+            blink_rhee = False
+        eye_a_rhee -= 0.5
+        eye_b_rhee += 0.5
+        eye_c_rhee -= 0.25
+        eye_d_rhee += 0.25
 
     x = 2560
     y = 2400
