@@ -6,6 +6,7 @@
   * [Edit the correct file](#edit-the-correct-file)
   * [Your outside-the-loop code](#your-outside-the-loop-code)
   * [Your inside-the-loop code](#your-inside-the-loop-code)
+  * [Checking your code](#checking-your-code)
   * [Saving your code](#saving-your-code)
   * [Resolving conflicts](#resolving-conflicts)
   * [Editing after pull request](#editing-after-pull-request)
@@ -57,6 +58,9 @@ anyone else's code.
 Now take your loop code, and paste it at the bottom of the indicated area in the loop. Be aware that other students will have code here, place yours at the bottom and don't delete anyone else's code. Your code must start with the `x` and `y` variables. You can edit them to reflect your position on the grid. Be sure to confirm that your code works before submitting a pull request (below).
 
 ![image](https://github.com/MrGallo/the-gallo-verse/assets/11080017/4484cf85-1212-49a3-812f-fe996b4de274)
+
+## Checking your code
+### Before commiting the code, please select all (ctrl + A) and paste it somewhere you can test it out. Get it to work before committing and creating a pull request.
 
 
 ## Saving your code
