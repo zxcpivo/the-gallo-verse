@@ -190,6 +190,14 @@ ayda_textRect = ayda_text.get_rect()
 ayda_textRect.topleft = (WIDTH // 2, HEIGHT // 2)
 # ------------------
 
+# ---------------------
+circle_x_adeline = 500 
+circle_y_adeline = 80 
+ellipse_x_adeline = 200 
+ellipse_y_adeline = 50 
+line_x_adeline = 300 
+line_y_adeline = 215 
+    
 
 running = True
 while running:
@@ -654,6 +662,47 @@ while running:
         if (x + rock_x_anthony) < (x + 540):
             pygame.draw.circle(screen, (225, 0, 0), (x + 540, y + 290), 50)
             pygame.draw.circle(screen, (225, 100, 0), (x + 540, y + 290), 30)
+
+    # ----------------------------------------------------------------------------------------
+
+    x = 3200
+    y = 2400
+
+    pygame.draw.rect(screen, (63, 155, 11), (x, y, width, height))
+    pygame.draw.rect(screen, (255, 255, 255), (x, y, width, 300))
+
+    ellipse_x_adeline += 1
+
+    if ellipse_x_adeline == x + width:
+        ellipse_x_adeline = x
+
+    # CLOUD 1 (dark blue)
+    pygame.draw.ellipse(screen, (0, 0, 255), (ellipse_x_adeline + x, ellipse_y_adeline + y, 135, 65))
+    pygame.draw.ellipse(screen, (0, 0, 255), (-85 + ellipse_x_adeline + x, ellipse_y_adeline + y, 135, 65))
+    # SUN
+    pygame.draw.circle(screen, (255, 255, 0), (circle_x_adeline + x, circle_y_adeline + y), 75)
+    # CLOUD 2 (light blue)
+    pygame.draw.ellipse(screen, (0, 150, 255), (-100 + ellipse_x_adeline + x, 80 + ellipse_y_adeline + y, 135, 65))
+    pygame.draw.ellipse(screen, (0, 150, 255), (-200 + ellipse_x_adeline + x, 80 + ellipse_y_adeline + y, 135, 65))
+    # FENCE (brown)
+    fence_x = 100
+    while fence_x < 550:
+        pygame.draw.rect(screen, (150, 75, 0), (fence_x + x, y + 260, 15, 40))
+        fence_x += 50
+    # HEAD
+    pygame.draw.circle(screen, (0, 0, 0), (-200 + circle_x_adeline + x, 100 + circle_y_adeline + y), 35, width = 5)
+    # BODY
+    pygame.draw.line(screen, (0, 0, 0), (line_x_adeline + x, line_y_adeline + y), (line_x_adeline + x, line_y_adeline + y + 50), width = 5)
+    # ARM OVER HEAD
+    pygame.draw.line(screen, (0, 0, 0), (line_x_adeline + x + 42, line_y_adeline + y - 40), (line_x_adeline + x, line_y_adeline + y + 30), width = 5)
+    pygame.draw.line(screen, (0, 0, 0), (line_x_adeline + x + 42, line_y_adeline + y - 40), (line_x_adeline + x + 15, line_y_adeline + y - 50), width = 5)
+    # OTHER ARM
+    pygame.draw.line(screen, (0, 0, 0), (line_x_adeline + x - 40, line_y_adeline + y + 20), (line_x_adeline + x, line_y_adeline + y), width = 5)
+    pygame.draw.line(screen, (0, 0, 0), (line_x_adeline + x - 40, line_y_adeline + y + 20), (line_x_adeline + x, line_y_adeline + y + 45), width = 5)
+    # LEGS
+    pygame.draw.line(screen, (0, 0, 0), (line_x_adeline + x, line_y_adeline + y + 50), (line_x_adeline + x + 30, line_y_adeline + y + 80), width = 5)
+    pygame.draw.line(screen, (0, 0, 0), (line_x_adeline + x, line_y_adeline + y + 50), (line_x_adeline + x - 30, line_y_adeline + y + 80), width = 5)
+
     #in loop
     x = 640
     y = 1440
@@ -728,6 +777,7 @@ while running:
 
 
 
+
     # ----------------------------------------------------------------------------------------
 
 
@@ -745,10 +795,10 @@ while running:
     # Rather than screen.fill, draw a rectangle
     screen.blit(bg_gallo, (x, y))
 
+
     screen.blit(welcome_text_gallo, (x + width//2 - welcome_text_gallo.get_width()//2, y + height//3 - welcome_text_gallo.get_height()//2))
     scaled_text = pygame.transform.scale(text_gallo, (text_gallo.get_width() * text_scale_gallo, text_gallo.get_height() * text_scale_gallo))
     screen.blit(scaled_text, (x + width//2 - scaled_text.get_width()//2, y + height//2 - scaled_text.get_height()//2))
-    
 
 
     # LEAVE HERE --------------------------------------------
