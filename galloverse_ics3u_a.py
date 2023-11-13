@@ -271,6 +271,29 @@ frames_joanne = 0
 num_dashes_joanne = 0
 
 #-------------------
+arm_r_a_rhee = 320
+arm_r_b_rhee = 290
+hand_r_rhee = 305
+hand_r_y_rhee = 270
+arm_r_y_a_rhee = 260
+arm_r_y_b_rhee = 265
+wave_a_rhee = False
+wave_b_rhee = False
+wave_c_rhee = False
+arm_l_a_rhee = 160
+arm_l_b_rhee = 190
+hand_l_rhee = 175
+hand_l_y_rhee = 270
+arm_l_y_a_rhee = 260
+arm_l_y_b_rhee = 265
+arm_far_rhee = False
+eye_a_rhee = 150
+eye_b_rhee = 25
+eye_c_rhee = 163
+eye_d_rhee = 8
+blink_rhee = False
+
+# -------------------
 
 running = True
 while running:
@@ -1012,6 +1035,97 @@ while running:
 
     if plane_x_joanne > 640:
         plane_x_joanne = 0
+    
+    # ----------------------------------------------------------------------------------------
+
+    if arm_far_rhee is False:
+        if arm_l_a_rhee < 145:
+            arm_far_rhee = True
+        arm_l_a_rhee -= 1
+        arm_l_b_rhee -= 1
+        arm_l_y_a_rhee -= 1
+        arm_l_y_b_rhee -= 1
+        hand_l_rhee -= 1
+        hand_l_y_rhee -= 1
+    elif arm_far_rhee is True:
+        if arm_l_a_rhee > 165:
+            arm_far_rhee = False
+        arm_l_a_rhee += 1
+        arm_l_b_rhee += 1
+        arm_l_y_a_rhee += 1
+        arm_l_y_b_rhee += 1
+        hand_l_rhee += 1
+        hand_l_y_rhee += 1
+
+    if wave_a_rhee is False:
+        if arm_r_y_a_rhee < 149:
+            wave_a_rhee = True
+        if wave_b_rhee is False:
+            arm_r_a_rhee += 1
+            arm_r_b_rhee += 1
+            hand_r_rhee += 1
+            if arm_r_a_rhee > 335:
+                wave_b_rhee = True
+        arm_r_y_a_rhee -= 1
+        arm_r_y_b_rhee -= 1
+        hand_r_y_rhee -= 1
+    elif wave_a_rhee is True:
+        if arm_r_a_rhee < 315:
+            wave_a_rhee = False
+        if arm_r_y_a_rhee > 245:
+            wave_b_rhee = False
+        if wave_b_rhee is False:
+            arm_r_a_rhee -= 1
+            arm_r_b_rhee -= 1
+            hand_r_rhee -= 1
+        arm_r_y_a_rhee += 1
+        arm_r_y_b_rhee += 1
+        hand_r_y_rhee += 1
+
+    if blink_rhee is False:
+        if eye_b_rhee < 10:
+            blink_rhee = True
+        eye_a_rhee += 0.5
+        eye_b_rhee -= 0.5
+        eye_c_rhee += 0.25
+        eye_d_rhee -= 0.25
+    elif blink_rhee is True:
+        if eye_b_rhee > 25:
+            blink_rhee = False
+        eye_a_rhee -= 0.5
+        eye_b_rhee += 0.5
+        eye_c_rhee -= 0.25
+        eye_d_rhee += 0.25
+
+    x = 2560
+    y = 2400
+    width = 640
+    height = 480
+
+    pygame.draw.rect(screen, (142, 84, 176), (x, y, width, height))
+    pygame.draw.rect(screen, (142, 84, 176), (x, y, width, height))
+    pygame.draw.polygon(screen, (42, 97, 60), [(x, y + 480), (x, y + 325), (x + 640, y + 325), (x + 640, y + 480)])
+    pygame.draw.circle(screen, (245, 250, 182), (x + 400, y + 80), 60)
+    pygame.draw.circle(screen, (142, 84, 176), (x + 420, y + 60), 40)
+    pygame.draw.polygon(screen, (64, 64, 59), [(x + 200, y + 350), (x + 205, y + 290), (x + 275, y + 290), (x + 280, y + 350), (x + 250, y + 350), (x + 240, y + 280), (x + 230, y + 350)])
+    pygame.draw.polygon(screen, (46, 46, 41), [(x + 197, y + 340), (x + 196, y + 355), (x + 191, y + 365), (x + 230, y + 365), (x + 232, y + 340)])
+    pygame.draw.polygon(screen, (46, 46, 41), [(x + 283, y + 340), (x + 284, y + 355), (x + 289, y + 365), (x + 250, y + 365), (x + 248, y + 340)])
+    pygame.draw.polygon(screen, (79, 79, 70), [(x + 200, y + 300), (x + 205, y + 190), (x + 275, y + 190), (x + 280, y + 300)])
+    pygame.draw.circle(screen, (64, 64, 59), (x + hand_l_rhee, y + hand_l_y_rhee), 15)
+    pygame.draw.circle(screen, (64, 64, 59), (x + hand_r_rhee, y + hand_r_y_rhee), 15)
+    pygame.draw.polygon(screen, (79, 79, 70), [(x + arm_l_a_rhee, y + arm_l_y_a_rhee), (x + 176, y + 206), (x + 202, y + 221), (x + 203, y + 218), (x + arm_l_b_rhee, y + arm_l_y_b_rhee)])
+    pygame.draw.polygon(screen, (79, 79, 70), [(x + arm_r_a_rhee, y + arm_r_y_a_rhee), (x + 304, y + 206), (x + 278, y + 221), (x + 277, y + 218), (x + arm_r_b_rhee, y + arm_r_y_b_rhee)])
+    pygame.draw.polygon(screen, (112, 112, 95), [(x + 240, y + 265), (x + 215, y + 195), (x + 265, y + 195)])
+    pygame.draw.polygon(screen, (99, 99, 90), [(x + 240, y + 265), (x + 225, y + 220), (x + 210, y + 230)])
+    pygame.draw.polygon(screen, (99, 99, 90), [(x + 240, y + 265), (x + 255, y + 220), (x + 270, y + 230)])
+    pygame.draw.polygon(screen, (46, 46, 41), [(x + 175, y + 195), (x + 210, y + 190), (x + 270, y + 190), (x + 305, y + 195), (x + 306, y + 205), (x + 270, y + 225), (x + 250, y + 225), (x + 240, y + 190), (x + 230, y + 225), (x + 210, y + 225), (x + 174, y + 205)])
+    pygame.draw.polygon(screen, (64, 64, 59), [(x+215,y+190), (x+205,y+170), (x+210,y+140), (x+225,y+130), (x+255,y+130), (x+270,y+140), (x+275,y+170), (x+265,y+190)])
+    pygame.draw.ellipse(screen, (245, 245, 54), [(x + 217, y + eye_a_rhee), (20, eye_b_rhee)])
+    pygame.draw.ellipse(screen, (245, 245, 54), [(x + 243, y + eye_a_rhee), (20, eye_b_rhee)])
+    pygame.draw.ellipse(screen, (255, 255, 207), [(x + 222, y + eye_c_rhee), (12, eye_d_rhee)])
+    pygame.draw.ellipse(screen, (255, 255, 207), [(x + 244, y + eye_c_rhee), (12, eye_d_rhee)])
+    pygame.draw.polygon(screen, (46, 46, 41), [(x + 226, y + 185), (x + 232, y + 170), (x + 240, y + 165), (x + 248, y + 170), (x + 254, y + 185), (x + 240, y + 188)])
+ 
     
     # ----------------------------------------------------------------------------------------
 
