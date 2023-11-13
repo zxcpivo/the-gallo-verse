@@ -204,7 +204,96 @@ polygon_ocampo4 = [
 (x+280, y+340),
 (x+247, y+370)
 ]
-# ------------------
+# Lucas -----------------
+
+asteroid_x_p = 0
+asteroid_y_p = 0
+
+asteroid_2_x_p = 0 
+asteroid_2_y_p = 0
+
+smallhole_1_x_p = 20
+smallhole_1_y_p = 10
+
+smallhole_2_x_p = -20
+smallhole_2_y_p = -10
+
+smallhole_3_x_p = 20
+smallhole_3_y_p = -20
+
+smallhole_4_x_p = -5
+smallhole_4_y_p = 30
+
+ufo_body_x_p  = 0
+ufo_body_y_p = 0 
+
+line1_x_p = 0 
+
+#Jaden Lam-------------------
+#Stars
+x_lam = random.randrange(10, 50)
+y_lam = random.randrange(10, 50)
+size_lam = random.randrange(1, 3)
+
+#Stars' Colour
+white_r_lam = 255
+white_g_lam = 255
+white_b_lam = 255
+    
+blue_g_lam = 200
+blue_b_lam = 255
+    
+red_r_lam = 255
+    
+yellow_r_lam = 255
+yellow_g_lam = 255
+
+#Space Ship
+tri_x_lam = 0
+tri_y_lam = 0
+tri_r_lam = 255
+tri_g_lam = 255
+tri_b_lam = 255
+
+#-------------------
+car_x_matros = 0
+parking_lines = 0
+road_lines1 = 0
+road_lines2 = 0
+sidewalk_lines1 = 0
+sidewalk_lines2 = 0
+
+#-------------------
+
+line_x_joanne = 200
+plane_x_joanne = 0
+frames_joanne = 0
+num_dashes_joanne = 0
+
+#-------------------
+arm_r_a_rhee = 320
+arm_r_b_rhee = 290
+hand_r_rhee = 305
+hand_r_y_rhee = 270
+arm_r_y_a_rhee = 260
+arm_r_y_b_rhee = 265
+wave_a_rhee = False
+wave_b_rhee = False
+wave_c_rhee = False
+arm_l_a_rhee = 160
+arm_l_b_rhee = 190
+hand_l_rhee = 175
+hand_l_y_rhee = 270
+arm_l_y_a_rhee = 260
+arm_l_y_b_rhee = 265
+arm_far_rhee = False
+eye_a_rhee = 150
+eye_b_rhee = 25
+eye_c_rhee = 163
+eye_d_rhee = 8
+blink_rhee = False
+
+# -------------------
 
 running = True
 while running:
@@ -223,7 +312,6 @@ while running:
                 dx, dy = event.rel
                 camera_x += -dx/scale
                 camera_y += -dy/scale
-
     # DRAWING
     screen.fill((255, 255, 255))
     window.fill((100, 100, 100))
@@ -475,6 +563,84 @@ while running:
     pygame.draw.ellipse(screen,"black",(olivia_cat_x+123,olivia_cat_y+380,6,8))
     pygame.draw.ellipse(screen,"black",(olivia_cat_x+151,olivia_cat_y+380,6,8))
 
+    # Lucas -----------------------------------------------------------
+
+    asteroid_x_p += 1
+    asteroid_y_p += 1
+    smallhole_1_x_p += 1
+    smallhole_1_y_p += 1
+    smallhole_2_x_p += 1
+    smallhole_2_y_p += 1
+    smallhole_3_x_p += 1
+    smallhole_3_y_p += 1
+    smallhole_4_x_p += 1
+    smallhole_4_y_p += 1
+    asteroid_2_x_p += 1.5
+    asteroid_2_y_p += 1.5
+    ufo_body_x_p += 1
+    line1_x_p += 1
+    
+    x = 1280
+    y = 960
+    width = 640
+    height = 480
+    circle_list_p = []
+    for i in range(40):
+        circle_p = {
+            'x_p': random.randint(x, x + 640),
+            'y_p': random.randint(y, y + 480),
+            'radius_p': random.randint(1,4)
+        }
+        circle_list_p.append(circle_p)
+    ufo_body_y_p = int((HEIGHT - 200) / 2 + math.sin(ufo_body_x_p / 100) * 100)
+    line1_y_p = int((HEIGHT - 200) / 2 + math.sin(line1_x_p / 100) * 100)
+    flame_variation_1_p = random.randint(-5, 5)  
+    if asteroid_y_p - 50 >= HEIGHT or asteroid_x_p - 50 >= WIDTH:
+      asteroid_x_p = x
+      asteroid_y_p = y
+      smallhole_1_x_p = x + 20
+      smallhole_1_y_p = y + 20
+      smallhole_2_x_p = x - 20
+      smallhole_2_y_p = y - 10
+      smallhole_3_x_p = x + 20
+      smallhole_3_y_p = y - 20
+      smallhole_4_x_p = x - 5
+      smallhole_4_y_p = y + 30
+    if asteroid_2_y_p >= HEIGHT or asteroid_2_x_p >= WIDTH:
+      asteroid_2_x_p = x
+      asteroid_2_y_p = y 
+    if ufo_body_y_p >= HEIGHT or ufo_body_x_p >= WIDTH:
+      ufo_body_x_p = x 
+      ufo_body_y_p = y
+      line1_x_p = x
+      line1_y_p = y
+    pygame.draw.rect(screen, (20, 20, 20), (x, y, width, height))
+# STARS
+    for circle_p in circle_list_p:  
+      pygame.draw.circle(screen, (255, 255, 255), (x + circle_p['x_p'], y + circle_p['y_p']), circle_p['radius_p'])
+# PLANET
+    pygame.draw.circle(screen, (20, 20, 160), (x + 30, y + 200), 10)
+    pygame.draw.polygon(screen, (20, 160, 20), [(x + 31, y + 202), (x + 34, y + 200), (x + 36, y + 202), (x + 30, y + 210), (x + 28, y + 202)])
+    pygame.draw.polygon(screen, (20, 160, 20), [(x + 25, y + 195), (x + 28, y + 194), (x + 30, y + 197), (x + 24, y + 199), (x + 22, y + 202)])
+# PLANET 2
+    pygame.draw.circle(screen, (201, 28, 40), (x + 300, y + 100), 10)
+    pygame.draw.polygon(screen, (227, 151, 70), [(x + 301, y + 102), (x + 306, y + 102), (x + 300, y + 110)])
+    pygame.draw.polygon(screen, (227, 151, 70), [(x + 295, y + 95), (x + 300, y + 97), (x + 294, y + 99), (x + 292, y + 102)])
+# UFO
+    pygame.draw.ellipse(screen, (173, 169, 163), (x + ufo_body_x_p, y + ufo_body_y_p + 100, 50, 20), 0)
+    pygame.draw.arc(screen, (67, 153, 91), (x + ufo_body_x_p + 8, y + ufo_body_y_p + 90, 33, 40), 0, 3.14, 300)
+    pygame.draw.line(screen, (123, 237, 119), (x +  line1_x_p +10, y + line1_y_p + 125), (x + line1_x_p, y + line1_y_p + 140), 3) 
+    pygame.draw.line(screen, (123, 237, 119), (x +  line1_x_p + 25, y + line1_y_p + 127), (x + 25 + line1_x_p, y + line1_y_p + 142), 3) 
+    pygame.draw.line(screen, (123, 237, 119), (x +  line1_x_p + 40, y + line1_y_p + 125), (x + 50 + line1_x_p, y + line1_y_p + 140), 3) 
+# ASTEROID 1 (BIG ONE)
+    pygame.draw.polygon(screen, (84, 200, 204), [(x + asteroid_x_p, y + asteroid_y_p - 50), (x + asteroid_x_p - 50, y + asteroid_y_p), (x + asteroid_x_p - 100 + flame_variation_1_p, y + asteroid_y_p - 100)])
+    pygame.draw.polygon(screen, (93, 144, 158), [(x + asteroid_x_p, y + asteroid_y_p - 50), (x + asteroid_x_p - 50, y + asteroid_y_p), (x + asteroid_x_p - 75 + flame_variation_1_p, y + asteroid_y_p - 75)])
+    pygame.draw.circle(screen, (140, 129, 116), (x + asteroid_x_p, y + asteroid_y_p), 50)
+    pygame.draw.circle(screen, (89, 85, 80), (x + smallhole_1_x_p, y + smallhole_1_y_p), 10)
+    pygame.draw.circle(screen, (89, 85, 80), (x + smallhole_2_x_p, y + smallhole_2_y_p), 20)
+    pygame.draw.circle(screen, (89, 85, 80), (x + smallhole_3_x_p, y + smallhole_3_y_p), 7)
+    pygame.draw.circle(screen, (89, 85, 80), (x + smallhole_4_x_p, y + smallhole_4_y_p), 9)    
+
     # Youlchan --------------------------------------------------------
 
     x = 0
@@ -583,6 +749,384 @@ while running:
     if leaves_x_ocampo == -100: 
         bark_x_ocampo = 640 
         leaves_x_ocampo = 695
+
+    #Jaden Lam-------------------------------------------------------------------------------
+    x = 640 * 4
+    y = 0
+    
+    #Star Blinking
+    blink_lam = random.randrange(1, 16)
+    
+    if blink_lam == 1:
+        white_r_lam = 0
+        white_g_lam = 0
+        white_b_lam = 0
+    if blink_lam == 2:
+        blue_g_lam = 0
+        blue_b_lam = 0
+    if blink_lam == 3:
+        red_r_lam = 0
+    if blink_lam == 4:
+        yellow_r_lam = 0
+        yellow_g_lam = 0
+
+    #Space Ship
+    tri_x_lam += 2
+    if tri_r_lam != 0:
+        tri_r_lam -= 1
+        tri_g_lam -= 1
+        tri_b_lam -= 1
+    
+    #White Stars
+    pygame.draw.circle(screen, (white_r_lam, white_g_lam, white_b_lam), (x+x_lam+100, y+y_lam+150), size_lam-1)
+    pygame.draw.circle(screen, (white_r_lam, white_g_lam, white_b_lam), (x+x_lam+360, y+y_lam+300), size_lam-2)
+    pygame.draw.circle(screen, (white_r_lam, white_g_lam, white_b_lam), (x+x_lam+150, y+y_lam+40), size_lam+1)
+    #Blue Stars
+    pygame.draw.circle(screen, (0, blue_g_lam, blue_b_lam), (x+x_lam+200, y+y_lam+260), size_lam-2)
+    pygame.draw.circle(screen, (0, blue_g_lam, blue_b_lam), (x+x_lam, y+y_lam+120), size_lam)
+    pygame.draw.circle(screen, (0, blue_g_lam, blue_b_lam), (x+x_lam+450, y+y_lam+220), size_lam+1)
+    #Red Stars
+    pygame.draw.circle(screen, (red_r_lam, 0, 0), (x+x_lam+400, y+y_lam+120), size_lam+2)
+    pygame.draw.circle(screen, (red_r_lam, 0, 0), (x+x_lam+160, y+y_lam+250), size_lam-1)
+    pygame.draw.circle(screen, (red_r_lam, 0, 0), (x+x_lam+300, y+y_lam+180), size_lam)
+    #Yellow Stars
+    pygame.draw.circle(screen, (yellow_r_lam, yellow_g_lam, 0), (x+x_lam+210, y+y_lam+240), size_lam)
+    pygame.draw.circle(screen, (yellow_r_lam, yellow_g_lam, 0), (x+x_lam+490, y+y_lam+60), size_lam-2)
+    pygame.draw.circle(screen, (yellow_r_lam, yellow_g_lam, 0), (x+x_lam+30, y+y_lam+280), size_lam+1)
+    
+    #Space Ship
+    pygame.draw.polygon(screen, (tri_r_lam, tri_g_lam, tri_b_lam), [(x+tri_x_lam, y+tri_y_lam+150), (x+tri_x_lam, y+tri_y_lam+200), (x+tri_x_lam+100, y+tri_y_lam+175)])
+    
+    # Christian -------------------------------------------------------------------------------------
+    x = 3840
+    y = 2880
+    width = 640
+    height = 480
+    
+    car_x_matros += 3
+    
+    if car_x_matros > width:
+        car_x_matros = 0
+    
+    # Rather than screen.fill, draw a rectangle
+    pygame.draw.rect(screen, (0, 66, 0), (x, y, width, height-200))
+
+    # Parking Lot
+    # Background Parking
+    pygame.draw.rect(screen, (80, 80, 80), (x, y+200, width-300, height))
+
+    # Parking Lines
+    while parking_lines < (width-300):
+        pygame.draw.rect(screen, (255, 255, 255), (x+parking_lines, y+350, width-635, height-350))
+        parking_lines += 50
+    pygame.draw.rect(screen, (255, 255, 255), (x, y+415, width-337, height-475))
+
+    # Road
+    # Sidewalk
+    pygame.draw.rect(screen, (166, 166, 166), (x, y+90, width, height-300))
+    pygame.draw.rect(screen, (166, 166, 166), (x+320, y, width-460, height))
+    while sidewalk_lines1 <= width:
+        pygame.draw.rect(screen, (150, 150, 150), (x+sidewalk_lines1, y+90, width-638, height-300))
+        sidewalk_lines1 += 30
+    while sidewalk_lines2 <= height:
+        pygame.draw.rect(screen, (150, 150, 150), (x+320, y+sidewalk_lines2, width-460, height-478))
+        sidewalk_lines2 += 30
+    
+    # Road Entrance to Lot
+    road_entrance = [
+        (x+312, y+270),
+        (x+355, y+270),
+        (x+355, y+330),
+        (x+312, y+330)
+    ]
+    pygame.draw.polygon(screen, (80, 80, 80), road_entrance)
+    
+    # Main road
+    pygame.draw.rect(screen, (80, 80, 80), (x, y+120, width, height-360))
+    pygame.draw.rect(screen, (0, 0, 0), (x, y+130, width, height-380))
+    while road_lines1 <= width:
+        pygame.draw.rect(screen, (255, 255, 0), (x+road_lines1, y+175, width-610, height-475))   
+        road_lines1 += 50
+    pygame.draw.rect(screen, (80, 80, 80), (x+350, y, width-520, height))
+    pygame.draw.rect(screen, (0, 0, 0), (x+360, y, width-540, height))
+    while road_lines2 <= height:
+        pygame.draw.rect(screen, (255, 255, 0), (x+405, y+road_lines2, width-635, height-450))
+        road_lines2 += 50
+    road_center_matros = [
+        (x+350, y+130),
+        (x+470, y+130),
+        (x+470, y+229),
+        (x+350, y+229)
+    ]
+    pygame.draw.polygon(screen, (0, 0, 0), road_center_matros)
+
+    # Car 1
+    car_body_matros = [
+        (x + car_x_matros, y + 191),
+        (x + 80 + car_x_matros, y + 191),
+        (x + 80 + car_x_matros, y + 220),
+        (x + car_x_matros, y + 220)
+    ]
+
+    car_frontlight1 = [
+        (x + 75 + car_x_matros, y + 195),
+        (x + 75 + car_x_matros, y + 202),
+        (x + 80 + car_x_matros, y + 202),
+        (x + 80 + car_x_matros, y + 195)
+    ]
+
+    car_frontlight2 = [
+        (x + 75 + car_x_matros, y+206),
+        (x + 75 + car_x_matros, y+213),
+        (x + 80 + car_x_matros, y+213),
+        (x + 80 + car_x_matros, y+206)
+    ]
+
+    car_backlight1 = [
+        (x + car_x_matros, y + 191),
+        (x + car_x_matros, y + 198),
+        (x + 5 + car_x_matros, y + 198),
+        (x + 5 + car_x_matros, y + 191)
+    ]
+
+    car_backlight2 = [
+        (x + car_x_matros, y + 220),
+        (x + car_x_matros, y + 213),
+        (x + 5 + car_x_matros, y + 213),
+        (x + 5 + car_x_matros, y + 220)
+    ]
+
+    car_windshield = [
+        (x + 68 + car_x_matros, y + 194),
+        (x + 54 + car_x_matros, y + 199),
+        (x + 54 + car_x_matros, y + 212),
+        (x + 68 + car_x_matros, y + 217)
+        
+    ]
+    
+    pygame.draw.polygon(screen, (0, 99, 0), car_body_matros)
+    pygame.draw.polygon(screen, (255, 255, 0), car_frontlight1)
+    pygame.draw.polygon(screen, (255, 255, 0), car_frontlight2)
+    pygame.draw.polygon(screen, (255, 0, 0), car_backlight1)
+    pygame.draw.polygon(screen, (255, 0, 0), car_backlight2)
+    pygame.draw.polygon(screen, (0, 0, 99), car_windshield)
+
+    # Car 2
+    b_car_body_matros = [
+        (x + 450, y + 357),
+        (x + 421, y + 357),
+        (x + 421, y + 437),
+        (x + 450, y + 437)
+    ]
+
+    b_car_frontlight1 = [
+        (x + 425, y + 357),
+        (x + 432, y + 357),
+        (x + 432, y + 361),
+        (x + 425, y + 361)
+    ]
+
+    b_car_frontlight2 = [
+        (x+437, y+357),
+        (x+444, y+357),
+        (x+444, y+361),
+        (x+437, y+361)
+    ]
+
+    b_car_backlight1 = [
+        (x + 421, y + 437),
+        (x + 428, y + 437),
+        (x + 428, y + 432),
+        (x + 421, y + 432)
+    ]
+
+    b_car_backlight2 = [
+        (x + 450, y + 437),
+        (x + 443, y + 437),
+        (x + 443, y + 432),
+        (x + 450, y + 432)
+    ]
+
+    b_car_windshield = [
+        (x + 424, y + 370),
+        (x + 447, y + 370),
+        (x + 442, y + 385),
+        (x + 429, y + 385)
+    ]
+
+    pygame.draw.polygon(screen, (204, 102, 0), b_car_body_matros)
+    pygame.draw.polygon(screen, (255, 255, 0), b_car_frontlight1)
+    pygame.draw.polygon(screen, (255, 255, 0), b_car_frontlight2)
+    pygame.draw.polygon(screen, (255, 0, 0), b_car_backlight1)
+    pygame.draw.polygon(screen, (255, 0, 0), b_car_backlight2)
+    pygame.draw.polygon(screen, (0, 0, 99), b_car_windshield)
+
+    # ----------------------------------------------------------------------------------------
+
+    
+    x = 1280
+    y = 2400
+    width = 640
+    height = 480
+
+    plane_x_joanne += 1
+    frames_joanne += 1
+
+
+    pygame.draw.rect(screen, (128, 192, 255), (x, y, width, height))
+
+    pygame.draw.rect(screen, (174, 255, 91), (x, y + 340, width, 140))
+
+    pygame.draw.ellipse(screen, (255, 255, 255), (x + 30, y + 60, 45, 35))
+    pygame.draw.ellipse(screen, (255, 255, 255), (x + 65, y + 65, 50, 35))
+    pygame.draw.ellipse(screen, (255, 255, 255), (x + 105, y + 60, 45, 35))
+    pygame.draw.ellipse(screen, (255, 255, 255), (x + 55, y + 42, 40, 35))
+    pygame.draw.ellipse(screen, (255, 255, 255), (x + 85, y + 42, 40, 35))
+
+    pygame.draw.ellipse(screen, (255, 255, 255), (x + 180, y + 60, 45, 35))
+    pygame.draw.ellipse(screen, (255, 255, 255), (x + 215, y + 65, 50, 35))
+    pygame.draw.ellipse(screen, (255, 255, 255), (x + 255, y + 60, 45, 35))
+    pygame.draw.ellipse(screen, (255, 255, 255), (x + 205, y + 42, 40, 35))
+    pygame.draw.ellipse(screen, (255, 255, 255), (x + 235, y + 42, 40, 35))
+
+    pygame.draw.ellipse(screen, (255, 255, 255), (x + 330, y + 60, 45, 35))
+    pygame.draw.ellipse(screen, (255, 255, 255), (x + 365, y + 65, 50, 35))
+    pygame.draw.ellipse(screen, (255, 255, 255), (x + 405, y + 60, 45, 35))
+    pygame.draw.ellipse(screen, (255, 255, 255), (x + 355, y + 42, 40, 35))
+    pygame.draw.ellipse(screen, (255, 255, 255), (x + 385, y + 42, 40, 35))
+
+    pygame.draw.ellipse(screen, (255, 255, 255), (x + 480, y + 60, 45, 35))
+    pygame.draw.ellipse(screen, (255, 255, 255), (x + 510, y + 65, 50, 35))
+    pygame.draw.ellipse(screen, (255, 255, 255), (x + 550, y + 60, 45, 35))
+    pygame.draw.ellipse(screen, (255, 255, 255), (x + 500, y + 42, 40, 35))
+    pygame.draw.ellipse(screen, (255, 255, 255), (x + 530, y + 42, 40, 35))
+
+
+    spacing_joanne = 7
+    line_joanne = 50
+    space_joanne = 0
+    width_joanne = 6
+    count_joanne = 0
+
+    if frames_joanne % 13 == 0:
+        num_dashes_joanne += 1
+
+    while count_joanne <= num_dashes_joanne:
+        line = pygame.draw.aaline(screen, (250, 250, 250), (x + space_joanne, y + 205), (x + 10 + space_joanne, y + 205))
+        space_joanne += width_joanne + spacing_joanne
+        count_joanne += 1
+
+    if frames_joanne > 640:
+        pygame.draw.rect(screen, (128, 192, 255), (x, y + 200, width, 10))
+        space_joanne = 0
+        count_joanne = 0
+        frames_joanne = 0
+        num_dashes_joanne = 0
+
+
+    pygame.draw.ellipse(screen, (255, 128, 0), (x + plane_x_joanne, y + 200, 30, 20))
+    pygame.draw.ellipse(screen, (96, 96, 96), (x + 28 + plane_x_joanne, y + 205, 7, 10))
+    pygame.draw.ellipse(screen, (0, 0, 0), (x + 29 + plane_x_joanne, y + 185, 4, 20))
+    pygame.draw.ellipse(screen, (0, 0, 0), (x + 29 + plane_x_joanne, y + 215, 4, 20))
+    pygame.draw.ellipse(screen, (204, 102, 0), (x - 48 + plane_x_joanne, y + 190, 13, 20))
+    pygame.draw.polygon(screen, (255, 128, 0), [(x + 11 + plane_x_joanne, y + 201), (x - 48 + plane_x_joanne, y + 201), (x - 48 + plane_x_joanne, y + 210), (x + 14 + plane_x_joanne, y + 220)])
+    pygame.draw.ellipse(screen, (255, 85, 0), (x + -15 + plane_x_joanne, y + 208, 30, 5))
+    pygame.draw.circle(screen, (128, 192, 255), (x + 12 + plane_x_joanne, y + 198), 7)
+
+    if plane_x_joanne > 640:
+        plane_x_joanne = 0
+    
+    # ----------------------------------------------------------------------------------------
+
+    if arm_far_rhee is False:
+        if arm_l_a_rhee < 145:
+            arm_far_rhee = True
+        arm_l_a_rhee -= 1
+        arm_l_b_rhee -= 1
+        arm_l_y_a_rhee -= 1
+        arm_l_y_b_rhee -= 1
+        hand_l_rhee -= 1
+        hand_l_y_rhee -= 1
+    elif arm_far_rhee is True:
+        if arm_l_a_rhee > 165:
+            arm_far_rhee = False
+        arm_l_a_rhee += 1
+        arm_l_b_rhee += 1
+        arm_l_y_a_rhee += 1
+        arm_l_y_b_rhee += 1
+        hand_l_rhee += 1
+        hand_l_y_rhee += 1
+
+    if wave_a_rhee is False:
+        if arm_r_y_a_rhee < 149:
+            wave_a_rhee = True
+        if wave_b_rhee is False:
+            arm_r_a_rhee += 1
+            arm_r_b_rhee += 1
+            hand_r_rhee += 1
+            if arm_r_a_rhee > 335:
+                wave_b_rhee = True
+        arm_r_y_a_rhee -= 1
+        arm_r_y_b_rhee -= 1
+        hand_r_y_rhee -= 1
+    elif wave_a_rhee is True:
+        if arm_r_a_rhee < 315:
+            wave_a_rhee = False
+        if arm_r_y_a_rhee > 245:
+            wave_b_rhee = False
+        if wave_b_rhee is False:
+            arm_r_a_rhee -= 1
+            arm_r_b_rhee -= 1
+            hand_r_rhee -= 1
+        arm_r_y_a_rhee += 1
+        arm_r_y_b_rhee += 1
+        hand_r_y_rhee += 1
+
+    if blink_rhee is False:
+        if eye_b_rhee < 10:
+            blink_rhee = True
+        eye_a_rhee += 0.5
+        eye_b_rhee -= 0.5
+        eye_c_rhee += 0.25
+        eye_d_rhee -= 0.25
+    elif blink_rhee is True:
+        if eye_b_rhee > 25:
+            blink_rhee = False
+        eye_a_rhee -= 0.5
+        eye_b_rhee += 0.5
+        eye_c_rhee -= 0.25
+        eye_d_rhee += 0.25
+
+    x = 2560
+    y = 2400
+    width = 640
+    height = 480
+
+    pygame.draw.rect(screen, (142, 84, 176), (x, y, width, height))
+    pygame.draw.rect(screen, (142, 84, 176), (x, y, width, height))
+    pygame.draw.polygon(screen, (42, 97, 60), [(x, y + 480), (x, y + 325), (x + 640, y + 325), (x + 640, y + 480)])
+    pygame.draw.circle(screen, (245, 250, 182), (x + 400, y + 80), 60)
+    pygame.draw.circle(screen, (142, 84, 176), (x + 420, y + 60), 40)
+    pygame.draw.polygon(screen, (64, 64, 59), [(x + 200, y + 350), (x + 205, y + 290), (x + 275, y + 290), (x + 280, y + 350), (x + 250, y + 350), (x + 240, y + 280), (x + 230, y + 350)])
+    pygame.draw.polygon(screen, (46, 46, 41), [(x + 197, y + 340), (x + 196, y + 355), (x + 191, y + 365), (x + 230, y + 365), (x + 232, y + 340)])
+    pygame.draw.polygon(screen, (46, 46, 41), [(x + 283, y + 340), (x + 284, y + 355), (x + 289, y + 365), (x + 250, y + 365), (x + 248, y + 340)])
+    pygame.draw.polygon(screen, (79, 79, 70), [(x + 200, y + 300), (x + 205, y + 190), (x + 275, y + 190), (x + 280, y + 300)])
+    pygame.draw.circle(screen, (64, 64, 59), (x + hand_l_rhee, y + hand_l_y_rhee), 15)
+    pygame.draw.circle(screen, (64, 64, 59), (x + hand_r_rhee, y + hand_r_y_rhee), 15)
+    pygame.draw.polygon(screen, (79, 79, 70), [(x + arm_l_a_rhee, y + arm_l_y_a_rhee), (x + 176, y + 206), (x + 202, y + 221), (x + 203, y + 218), (x + arm_l_b_rhee, y + arm_l_y_b_rhee)])
+    pygame.draw.polygon(screen, (79, 79, 70), [(x + arm_r_a_rhee, y + arm_r_y_a_rhee), (x + 304, y + 206), (x + 278, y + 221), (x + 277, y + 218), (x + arm_r_b_rhee, y + arm_r_y_b_rhee)])
+    pygame.draw.polygon(screen, (112, 112, 95), [(x + 240, y + 265), (x + 215, y + 195), (x + 265, y + 195)])
+    pygame.draw.polygon(screen, (99, 99, 90), [(x + 240, y + 265), (x + 225, y + 220), (x + 210, y + 230)])
+    pygame.draw.polygon(screen, (99, 99, 90), [(x + 240, y + 265), (x + 255, y + 220), (x + 270, y + 230)])
+    pygame.draw.polygon(screen, (46, 46, 41), [(x + 175, y + 195), (x + 210, y + 190), (x + 270, y + 190), (x + 305, y + 195), (x + 306, y + 205), (x + 270, y + 225), (x + 250, y + 225), (x + 240, y + 190), (x + 230, y + 225), (x + 210, y + 225), (x + 174, y + 205)])
+    pygame.draw.polygon(screen, (64, 64, 59), [(x+215,y+190), (x+205,y+170), (x+210,y+140), (x+225,y+130), (x+255,y+130), (x+270,y+140), (x+275,y+170), (x+265,y+190)])
+    pygame.draw.ellipse(screen, (245, 245, 54), [(x + 217, y + eye_a_rhee), (20, eye_b_rhee)])
+    pygame.draw.ellipse(screen, (245, 245, 54), [(x + 243, y + eye_a_rhee), (20, eye_b_rhee)])
+    pygame.draw.ellipse(screen, (255, 255, 207), [(x + 222, y + eye_c_rhee), (12, eye_d_rhee)])
+    pygame.draw.ellipse(screen, (255, 255, 207), [(x + 244, y + eye_c_rhee), (12, eye_d_rhee)])
+    pygame.draw.polygon(screen, (46, 46, 41), [(x + 226, y + 185), (x + 232, y + 170), (x + 240, y + 165), (x + 248, y + 170), (x + 254, y + 185), (x + 240, y + 188)])
+ 
+    
     # ----------------------------------------------------------------------------------------
 
     # Must have these coordinates
@@ -601,7 +1145,6 @@ while running:
     screen.blit(welcome_text_gallo, (x + width//2 - welcome_text_gallo.get_width()//2, y + height//3 - welcome_text_gallo.get_height()//2))
     scaled_text = pygame.transform.scale(text_gallo, (text_gallo.get_width() * text_scale_gallo, text_gallo.get_height() * text_scale_gallo))
     screen.blit(scaled_text, (x + width//2 - scaled_text.get_width()//2, y + height//2 - scaled_text.get_height()//2))
-    
 
 
     # LEAVE HERE --------------------------------------------
