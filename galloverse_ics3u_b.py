@@ -670,27 +670,8 @@ while running:
     pygame.draw.rect(screen, (165, 42, 42), (x, y + horizontal_stick_spawn, 100, 10))
     pygame.draw.rect(screen, (255, 0, 0), (x + 100, y + horizontal_stick_spawn, 540, 10))
     
+    #-----------------------------------------------------------------------------------------
 
-
-
-    # ----------------------------------------------------------------------------------------
-    x = 1920
-    y = 1440
-    width = 640
-    height = 480
-
-    frames_gallo += 1
-    text_scale_gallo = abs((math.sin(frames_gallo / 30) - 3) / 3)
-    
-
-    # Rather than screen.fill, draw a rectangle
-    screen.blit(bg_gallo, (x, y))
-
-    screen.blit(welcome_text_gallo, (x + width//2 - welcome_text_gallo.get_width()//2, y + height//3 - welcome_text_gallo.get_height()//2))
-    scaled_text = pygame.transform.scale(text_gallo, (text_gallo.get_width() * text_scale_gallo, text_gallo.get_height() * text_scale_gallo))
-    screen.blit(scaled_text, (x + width//2 - scaled_text.get_width()//2, y + height//2 - scaled_text.get_height()//2))
-
-    #-------------------------------------------------------------------------------------------------
     if circle_y_gloria <= gloria_y + 190:
         circle_x_gloria += 1
         circle_y_gloria += 2
@@ -764,6 +745,22 @@ while running:
     if crash_gloria == True:
         pygame.draw.polygon(screen, (255, 140, 0), (meteor_points))
 
+    # ----------------------------------------------------------------------------------------
+    x = 1920
+    y = 1440
+    width = 640
+    height = 480
+
+    frames_gallo += 1
+    text_scale_gallo = abs((math.sin(frames_gallo / 30) - 3) / 3)
+    
+
+    # Rather than screen.fill, draw a rectangle
+    screen.blit(bg_gallo, (x, y))
+
+    screen.blit(welcome_text_gallo, (x + width//2 - welcome_text_gallo.get_width()//2, y + height//3 - welcome_text_gallo.get_height()//2))
+    scaled_text = pygame.transform.scale(text_gallo, (text_gallo.get_width() * text_scale_gallo, text_gallo.get_height() * text_scale_gallo))
+    screen.blit(scaled_text, (x + width//2 - scaled_text.get_width()//2, y + height//2 - scaled_text.get_height()//2))
 
     # LEAVE HERE --------------------------------------------
     screen_width, screen_height = screen.get_size()
