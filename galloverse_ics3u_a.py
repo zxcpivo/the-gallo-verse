@@ -64,7 +64,7 @@ switch_maggie = "right"
 
 # ----------------------
 
-star_x_christine = 0
+star_x_christine = 5
 star_y_christine = 0
 
 switch_christine = "right"
