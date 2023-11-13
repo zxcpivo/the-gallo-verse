@@ -264,6 +264,14 @@ sidewalk_lines1 = 0
 sidewalk_lines2 = 0
 
 #-------------------
+
+line_x_joanne = 200
+plane_x_joanne = 0
+frames_joanne = 0
+num_dashes_joanne = 0
+
+#-------------------
+
 running = True
 while running:
     # GALLO VERSE SPECIFIC ----------------------------------------------------------------
@@ -929,6 +937,81 @@ while running:
     pygame.draw.polygon(screen, (255, 0, 0), b_car_backlight1)
     pygame.draw.polygon(screen, (255, 0, 0), b_car_backlight2)
     pygame.draw.polygon(screen, (0, 0, 99), b_car_windshield)
+
+    # ----------------------------------------------------------------------------------------
+
+    
+    x = 1280
+    y = 2400
+    width = 640
+    height = 480
+
+    plane_x_joanne += 1
+    frames_joanne += 1
+
+
+    pygame.draw.rect(screen, (128, 192, 255), (x, y, width, height))
+
+    pygame.draw.rect(screen, (174, 255, 91), (x, y + 340, width, 140))
+
+    pygame.draw.ellipse(screen, (255, 255, 255), (x + 30, y + 60, 45, 35))
+    pygame.draw.ellipse(screen, (255, 255, 255), (x + 65, y + 65, 50, 35))
+    pygame.draw.ellipse(screen, (255, 255, 255), (x + 105, y + 60, 45, 35))
+    pygame.draw.ellipse(screen, (255, 255, 255), (x + 55, y + 42, 40, 35))
+    pygame.draw.ellipse(screen, (255, 255, 255), (x + 85, y + 42, 40, 35))
+
+    pygame.draw.ellipse(screen, (255, 255, 255), (x + 180, y + 60, 45, 35))
+    pygame.draw.ellipse(screen, (255, 255, 255), (x + 215, y + 65, 50, 35))
+    pygame.draw.ellipse(screen, (255, 255, 255), (x + 255, y + 60, 45, 35))
+    pygame.draw.ellipse(screen, (255, 255, 255), (x + 205, y + 42, 40, 35))
+    pygame.draw.ellipse(screen, (255, 255, 255), (x + 235, y + 42, 40, 35))
+
+    pygame.draw.ellipse(screen, (255, 255, 255), (x + 330, y + 60, 45, 35))
+    pygame.draw.ellipse(screen, (255, 255, 255), (x + 365, y + 65, 50, 35))
+    pygame.draw.ellipse(screen, (255, 255, 255), (x + 405, y + 60, 45, 35))
+    pygame.draw.ellipse(screen, (255, 255, 255), (x + 355, y + 42, 40, 35))
+    pygame.draw.ellipse(screen, (255, 255, 255), (x + 385, y + 42, 40, 35))
+
+    pygame.draw.ellipse(screen, (255, 255, 255), (x + 480, y + 60, 45, 35))
+    pygame.draw.ellipse(screen, (255, 255, 255), (x + 510, y + 65, 50, 35))
+    pygame.draw.ellipse(screen, (255, 255, 255), (x + 550, y + 60, 45, 35))
+    pygame.draw.ellipse(screen, (255, 255, 255), (x + 500, y + 42, 40, 35))
+    pygame.draw.ellipse(screen, (255, 255, 255), (x + 530, y + 42, 40, 35))
+
+
+    spacing_joanne = 7
+    line_joanne = 50
+    space_joanne = 0
+    width_joanne = 6
+    count_joanne = 0
+
+    if frames_joanne % 13 == 0:
+        num_dashes_joanne += 1
+
+    while count_joanne <= num_dashes_joanne:
+        line = pygame.draw.aaline(screen, (250, 250, 250), (x + space_joanne, y + 205), (x + 10 + space_joanne, y + 205))
+        space_joanne += width_joanne + spacing_joanne
+        count_joanne += 1
+
+    if frames_joanne > 640:
+        pygame.draw.rect(screen, (128, 192, 255), (x, y + 200, width, 10))
+        space_joanne = 0
+        count_joanne = 0
+        frames_joanne = 0
+        num_dashes_joanne = 0
+
+
+    pygame.draw.ellipse(screen, (255, 128, 0), (x + plane_x_joanne, y + 200, 30, 20))
+    pygame.draw.ellipse(screen, (96, 96, 96), (x + 28 + plane_x_joanne, y + 205, 7, 10))
+    pygame.draw.ellipse(screen, (0, 0, 0), (x + 29 + plane_x_joanne, y + 185, 4, 20))
+    pygame.draw.ellipse(screen, (0, 0, 0), (x + 29 + plane_x_joanne, y + 215, 4, 20))
+    pygame.draw.ellipse(screen, (204, 102, 0), (x - 48 + plane_x_joanne, y + 190, 13, 20))
+    pygame.draw.polygon(screen, (255, 128, 0), [(x + 11 + plane_x_joanne, y + 201), (x - 48 + plane_x_joanne, y + 201), (x - 48 + plane_x_joanne, y + 210), (x + 14 + plane_x_joanne, y + 220)])
+    pygame.draw.ellipse(screen, (255, 85, 0), (x + -15 + plane_x_joanne, y + 208, 30, 5))
+    pygame.draw.circle(screen, (128, 192, 255), (x + 12 + plane_x_joanne, y + 198), 7)
+
+    if plane_x_joanne > 640:
+        plane_x_joanne = 0
     
     # ----------------------------------------------------------------------------------------
 
