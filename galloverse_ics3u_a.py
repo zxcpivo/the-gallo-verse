@@ -295,6 +295,24 @@ blink_rhee = False
 
 # -------------------
 
+circle_x_sebast = 200
+circle_y_sebast = 100
+river_sebast = 250
+
+random_x_sebast = random.randrange(0, 640)
+random_y_sebast = random.randrange(0, 480)
+
+plot_width_sebast = 640
+duck_behind_x = 200
+
+plot_height_sebast = 480
+
+
+building_x_sebast = 50
+count_sebast = 0
+
+#_-----------------
+
 running = True
 while running:
     # GALLO VERSE SPECIFIC ----------------------------------------------------------------
@@ -796,6 +814,84 @@ while running:
     
     #Space Ship
     pygame.draw.polygon(screen, (tri_r_lam, tri_g_lam, tri_b_lam), [(x+tri_x_lam, y+tri_y_lam+150), (x+tri_x_lam, y+tri_y_lam+200), (x+tri_x_lam+100, y+tri_y_lam+175)])
+
+     # -----------------------------------------Joakim start
+
+    # DRAWING
+    # Must have these coordinates
+    x = 1280
+    y = 480
+    width = 640
+    height = 480
+
+
+     # sky
+    pygame.draw.rect(screen, (70, 200, 225), (x, y, plot_width_sebast, plot_height_sebast))
+    #grass
+    pygame.draw.rect(screen, (10, 225, 155), (x, y + plot_height_sebast /2 + 50, plot_width_sebast, plot_height_sebast/6)) 
+
+    # Must draw with reference to that coordinate
+    #river
+    pygame.draw.rect(screen, (0, 155, 255), (x, y + plot_height_sebast - 140, plot_width_sebast, plot_height_sebast/4)) 
+
+    #   Chimney
+    pygame.draw.rect(screen, (0, 0, 0), (x + 200, y + 50, 30, 150))
+    #building 
+    pygame.draw.rect(screen, (60, 60, 90), (x + 150, y + 150, 400, 150))
+    # roof
+    pygame.draw.polygon(screen, (72, 54, 41), ( (x +  100, y + 150), (x  + 330, y + 70), (x + 600, y + 150) ))
+
+    # duck
+    #duck body
+    pygame.draw.ellipse(screen, (225, 225, 0), (x + circle_x_sebast, y + circle_y_sebast + river_sebast, 100, 60), 30)
+    #river on duck
+    pygame.draw.ellipse(screen, (0, 155, 225), (x + circle_x_sebast - 10, y + circle_y_sebast + 35 + river_sebast, 130, 60), 30)
+
+    #duck head
+    pygame.draw.circle(screen, (225, 225, 0), (x + circle_x_sebast + 85, y + circle_y_sebast - 5 + river_sebast), 20)
+
+    #duck eye
+    pygame.draw.circle(screen, (0, 0, 0), (x + circle_x_sebast + 80, y + circle_y_sebast - 15 + river_sebast ), 3)
+
+    #duck beak
+    pygame.draw.rect(screen, (225, 100, 0), (x + circle_x_sebast + 90, y + circle_y_sebast - 5 + river_sebast, 17, 5), 10)  
+
+    #duck body
+    pygame.draw.ellipse(screen, (225, 200, 0), (x + circle_x_sebast - duck_behind_x, y + circle_y_sebast + river_sebast, 100, 60), 30)
+
+    #river on duck
+    pygame.draw.ellipse(screen, (0, 155, 225), (x + circle_x_sebast - duck_behind_x - 10, y + circle_y_sebast + 35 + river_sebast, 130, 60), 30)
+
+    #duck head
+    pygame.draw.circle(screen, (225, 200, 0), (x + circle_x_sebast + 85 - duck_behind_x, y + circle_y_sebast - 5 + river_sebast), 20)
+
+    #duck eye
+    pygame.draw.circle(screen, (0, 0, 0), (x + circle_x_sebast + 80 - duck_behind_x, y + circle_y_sebast - 15 + river_sebast ), 3)
+
+    #duck beak
+    pygame.draw.rect(screen, (225, 100, 0), (x + circle_x_sebast + 90 - duck_behind_x, y + circle_y_sebast - 5 + river_sebast, 17, 5), 10)  
+
+    if circle_x_sebast < plot_width_sebast - 150:
+      circle_x_sebast += 1
+    else:
+      circle_x_sebast = 100
+
+    while building_x_sebast < 600:
+      building_x_sebast += 100
+
+
+    random_x_sebast = random.randrange(0, 640)
+    random_y_sebast = random.randrange(0, 480)
+
+
+    if count_sebast % 3 == 0:
+      pygame.draw.rect(screen, (90, 150, 255), (x + random_x_sebast, y + random_y_sebast, 2, 30)) 
+
+    count_sebast += 1
+
+    #------- Joakim end
+
+
     
     # Christian -------------------------------------------------------------------------------------
     x = 3840
