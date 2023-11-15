@@ -1,6 +1,8 @@
 **ATTENTION** Please ensure you do a final check of your code:
 
-- [ ] Check the "Changed files" tab: I don't *inadvertently* overwrite another persons code.
+1. Check the "Changed files" tab:
+- [ ]  I don't *inadvertently* overwrite another persons code.
+2. In the the "Changed files" tab, click the `...` on the top right of the file, copy all the code and test it on your computer:
 - [ ] I have tested this code as a whole and claim it to be working.
 
 If you have verified the top two:
