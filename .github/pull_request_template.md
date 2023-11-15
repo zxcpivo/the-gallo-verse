@@ -1,7 +1,9 @@
-Testing pull request template.
+**ATTENTION** Please ensure you do a final check of your code:
 
-- [ ] One
-- [ ] Two
-- [ ] Three
+- [ ] Check the "Changed files" tab: I don't *inadvertantly* overwrite another persons code.
+- [ ] I have tested this code as a whole and claim it to be working.
 
-Yay!
+If you have verified the top two:
+- [ ] My code is ready for integration.
+
+If you need assistance, go to the issues tab and create an issue referencing the Pull Request number by typing `#12` for example in the issue.
