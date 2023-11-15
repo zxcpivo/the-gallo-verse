@@ -1,6 +1,6 @@
 **ATTENTION** Please ensure you do a final check of your code:
 
-- [ ] Check the "Changed files" tab: I don't *inadvertantly* overwrite another persons code.
+- [ ] Check the "Changed files" tab: I don't *inadvertently* overwrite another persons code.
 - [ ] I have tested this code as a whole and claim it to be working.
 
 If you have verified the top two:
