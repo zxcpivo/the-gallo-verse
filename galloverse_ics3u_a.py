@@ -528,7 +528,7 @@ while running:
     pygame.draw.rect(screen, (152,245,255), (x, y, width, height))
 
     #Rain?
-    for i in range(30):
+    for i in range(20):
         pygame.draw.circle(screen, (255,187,255), (x+40, y+50+20*i), 3)
         pygame.draw.circle(screen, (255,187,255), (x+90, y+50+20*i), 3)
         pygame.draw.circle(screen, (221,160,221), (x+570, y+50+20*i), 3)
