@@ -764,7 +764,6 @@ while running:
     if circle_y_gloria <= gloria_y + 190:
         circle_x_gloria += 1
         circle_y_gloria += 2
-    print(gloria_frames)
     gloria_frames += 1
     if gloria_frames % 130 == 0:
         circle_y_gloria = gloria_y
