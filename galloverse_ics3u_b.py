@@ -224,7 +224,30 @@ bomb_x_henry = 262
 bomb_y_henry = 70
 bomb_stopped_henry = False
 # -----------------------------------
-
+gleb_rect_x = 200
+gleb_rect_y = 200
+gleb_circle_x = gleb_rect_x + 80
+circle_y = 225
+gleb_leg1_x = 150
+gleb_leg1_y = 200
+gleb_leg2_x = 150
+gleb_leg2_y = 150
+gleb_shoe1_x = 150
+gleb_shoe1_y = 150
+gleb_shoe2_x = 150
+gleb_shoe2_y = 500
+gleb_bottom_underwear1_x = 188
+gleb_bottom_underwear1_y = 500
+gleb_bottom_underwear2_x = 188
+bottom_underwear2_y = 350
+gleb_upper_underwear_x = 200
+gleb_upper_underwear_y = 200
+gleb_left_hand_x = 350
+gleb_left_hand_y = 207
+gleb_right_hand_x = 350 
+gleb_right_hand_y = 240
+speed = 1
+#--------------------------------
 
 
 running = True
@@ -925,6 +948,47 @@ while running:
         x_henry = 0
         bomb_stopped_henry = False
     # ---------------------------------------------------------------------------
+    # Gleb's Superman
+
+    gleb_circle_x += speed
+    gleb_rect_x += speed
+    gleb_leg1_x += speed
+    gleb_leg2_x += speed
+    gleb_shoe1_x += speed
+    gleb_shoe2_x += speed
+    gleb_bottom_underwear1_x += speed
+    gleb_bottom_underwear2_x += speed
+    gleb_upper_underwear_x += speed
+    gleb_left_hand_x += speed
+    gleb_right_hand_x += speed
+    if gleb_left_hand_x > 540:
+        speed = speed * -1
+    elif gleb_shoe1_x < 0:
+        speed = speed * -1
+
+    # DRAWING
+    # Must have these coordinates
+    x = 1920
+    y = 960
+    width = 640
+    height = 480
+
+    # Rather than screen.fill, draw a rectangle
+    pygame.draw.rect(screen, (137, 207, 240), (x, y, width, height))
+
+    # Must draw with reference to that coordinate
+    pygame.draw.rect(screen, (0, 0, 255), (x + gleb_left_hand_x, + y + gleb_left_hand_y, 100, 7)) # left hand
+    pygame.draw.circle(screen, (255, 204, 153), (x + gleb_circle_x + 100, y + circle_y), 30) #head
+    pygame.draw.rect(screen, (0, 0, 255), (x + gleb_right_hand_x, y + gleb_right_hand_y, 100, 7)) #right hand
+    pygame.draw.rect(screen, (0, 0, 255), (x + gleb_rect_x, y + gleb_rect_y, 150, 50))
+    pygame.draw.rect(screen, (0, 0, 255), (x + gleb_leg1_x, y + gleb_rect_y + 7, 50, 10))
+    pygame.draw.rect(screen, (0, 0, 255), (x + gleb_leg2_x, y + gleb_rect_y + 35, 50, 10))
+    pygame.draw.rect(screen, (255, 0, 0), (x + gleb_shoe1_x, y + gleb_rect_y + 35, 20, 10))
+    pygame.draw.rect(screen, (255, 0, 0), (x + gleb_shoe2_x, y + gleb_rect_y + 7, 20, 10))
+    pygame.draw.rect(screen, (255, 0, 0), (x + gleb_bottom_underwear1_x, y + gleb_rect_y + 35, 12, 10)) #underwear on the legs
+    pygame.draw.rect(screen, (255, 0, 0), (x + gleb_bottom_underwear2_x, y + gleb_rect_y + 7, 12, 10)) #underwear on the legs
+    pygame.draw.rect(screen, (255, 0, 0), (x + gleb_rect_x, y + gleb_rect_y, 25, 50)) # upper underwear 
+    pygame.draw.polygon(screen, (255, 0, 0), [(x + gleb_rect_x + 75, y + gleb_rect_y - 20), (x + gleb_rect_x + 150, y + gleb_rect_y + 25), (x + gleb_rect_x + 75, y + gleb_rect_y + 80)], 0) # cape
     
     # ----------------------------------------------------------------------------------------
     x = 1920
