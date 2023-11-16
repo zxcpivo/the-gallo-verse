@@ -178,6 +178,54 @@ circle_y_gloria = gloria_y
 crash_gloria = False
 gloria_frames = 0
 #---------------------------------------------
+#ayda lava
+ayda_amplitude = 10
+ayda_frequency = 0.03
+ayda_phase = 0
+
+#ayda colours
+AYDA_SKY = (250, 180, 150)
+AYDA_LAVA = (255, 95, 0)
+AYDA_BROWN = (94, 69, 54)
+AYDA_RED = (200, 2, 2)
+AYDA_GREY = (40, 60, 60)
+AYDA_GREEN = (10, 150, 10)
+AYDA_BLUE = (46,103,248)
+
+#ayda text
+ayda_font = pygame.font.Font('freesansbold.ttf', 40)
+ayda_text = ayda_font.render("I HAVE THE HIGH GROUND.", True, AYDA_RED, AYDA_SKY)
+ayda_textRect = ayda_text.get_rect()
+ayda_textRect.topleft = (WIDTH // 2, HEIGHT // 2)
+# ------------------
+
+# ---------------------
+circle_x_adeline = 500 
+circle_y_adeline = 80 
+ellipse_x_adeline = 200 
+ellipse_y_adeline = 50 
+line_x_adeline = 300 
+line_y_adeline = 215 
+
+# ----------------------------------------
+w_henry = 1
+bomb_henry = False
+h_henry = 0
+x_henry = 0
+y_henry = 0
+WIDTH_henry = 640
+HEIGHT_henry = 480
+
+rect_x_henry = 250
+rect_y_henry = 200
+circle_x_henry = 260
+circle_y_henry = 150
+bomb_x_henry = 262
+bomb_y_henry = 70
+bomb_stopped_henry = False
+# -----------------------------------
+
+
 
 running = True
 while running:
@@ -642,6 +690,47 @@ while running:
         if (x + rock_x_anthony) < (x + 540):
             pygame.draw.circle(screen, (225, 0, 0), (x + 540, y + 290), 50)
             pygame.draw.circle(screen, (225, 100, 0), (x + 540, y + 290), 30)
+
+    # ----------------------------------------------------------------------------------------
+
+    x = 3200
+    y = 2400
+
+    pygame.draw.rect(screen, (63, 155, 11), (x, y, width, height))
+    pygame.draw.rect(screen, (255, 255, 255), (x, y, width, 300))
+
+    ellipse_x_adeline += 1
+
+    if ellipse_x_adeline == x + width:
+        ellipse_x_adeline = x
+
+    # CLOUD 1 (dark blue)
+    pygame.draw.ellipse(screen, (0, 0, 255), (ellipse_x_adeline + x, ellipse_y_adeline + y, 135, 65))
+    pygame.draw.ellipse(screen, (0, 0, 255), (-85 + ellipse_x_adeline + x, ellipse_y_adeline + y, 135, 65))
+    # SUN
+    pygame.draw.circle(screen, (255, 255, 0), (circle_x_adeline + x, circle_y_adeline + y), 75)
+    # CLOUD 2 (light blue)
+    pygame.draw.ellipse(screen, (0, 150, 255), (-100 + ellipse_x_adeline + x, 80 + ellipse_y_adeline + y, 135, 65))
+    pygame.draw.ellipse(screen, (0, 150, 255), (-200 + ellipse_x_adeline + x, 80 + ellipse_y_adeline + y, 135, 65))
+    # FENCE (brown)
+    fence_x = 100
+    while fence_x < 550:
+        pygame.draw.rect(screen, (150, 75, 0), (fence_x + x, y + 260, 15, 40))
+        fence_x += 50
+    # HEAD
+    pygame.draw.circle(screen, (0, 0, 0), (-200 + circle_x_adeline + x, 100 + circle_y_adeline + y), 35, width = 5)
+    # BODY
+    pygame.draw.line(screen, (0, 0, 0), (line_x_adeline + x, line_y_adeline + y), (line_x_adeline + x, line_y_adeline + y + 50), width = 5)
+    # ARM OVER HEAD
+    pygame.draw.line(screen, (0, 0, 0), (line_x_adeline + x + 42, line_y_adeline + y - 40), (line_x_adeline + x, line_y_adeline + y + 30), width = 5)
+    pygame.draw.line(screen, (0, 0, 0), (line_x_adeline + x + 42, line_y_adeline + y - 40), (line_x_adeline + x + 15, line_y_adeline + y - 50), width = 5)
+    # OTHER ARM
+    pygame.draw.line(screen, (0, 0, 0), (line_x_adeline + x - 40, line_y_adeline + y + 20), (line_x_adeline + x, line_y_adeline + y), width = 5)
+    pygame.draw.line(screen, (0, 0, 0), (line_x_adeline + x - 40, line_y_adeline + y + 20), (line_x_adeline + x, line_y_adeline + y + 45), width = 5)
+    # LEGS
+    pygame.draw.line(screen, (0, 0, 0), (line_x_adeline + x, line_y_adeline + y + 50), (line_x_adeline + x + 30, line_y_adeline + y + 80), width = 5)
+    pygame.draw.line(screen, (0, 0, 0), (line_x_adeline + x, line_y_adeline + y + 50), (line_x_adeline + x - 30, line_y_adeline + y + 80), width = 5)
+
     #in loop
     x = 640
     y = 1440
@@ -745,6 +834,98 @@ while running:
     if crash_gloria == True:
         pygame.draw.polygon(screen, (255, 140, 0), (meteor_points))
 
+    #----------------------
+    #AYDA'S REIGN OF TERROR
+    x = 640*4
+    y = 480*3
+    width = 640
+    height = 480
+    
+    #BACKGROUND
+    pygame.draw.rect(screen, (AYDA_SKY), (x, y, width, height))
+        
+    #LAND
+    pygame.draw.ellipse(screen, AYDA_BROWN, (x + width // 4, y + height // 4, 300, 300), width=0)
+    
+    #SHREKI-WAN KENOBI
+    pygame.draw.ellipse(screen, AYDA_GREEN, (x + width//2 - 30, y + height//2-140, 30, 40), width=0)
+    xpoint = x + width//2-15
+    pygame.draw.line(screen, AYDA_GREEN, (xpoint+15, y + height//2-140), (xpoint, y + height//2-120), width=3)
+    pygame.draw.line(screen, AYDA_GREEN, (xpoint-15, y + height//2-140), (xpoint, y + height//2-120), width=3)
+    
+    #LIGHTSABER
+    x1, y1 = x + width // 2 - 20, y + height // 2 - 120
+    x2, y2 = x + width // 2 - 45, y + height // 2 - 140
+    saber_x2 = x1 + (x2 - x1) / 4
+    saber_y2 = y1 + (y2 - y1) / 4
+    pygame.draw.line(screen, (AYDA_BLUE), (x1, y1), (x2, y2), width=3) #the laser
+    pygame.draw.line(screen, (0, 0, 0), (x1, y1), (saber_x2, saber_y2), width=3) #the handle
+    
+    #WAVE
+    wave_points = []
+    for a in range(x, x + width, 5): 
+        x_wave = a - x 
+        y_wave = height // 2 + ayda_amplitude * math.sin(ayda_frequency * x_wave + ayda_phase)
+        wave_points.append((x_wave + x, y_wave + y))
+        pygame.draw.rect(screen, AYDA_LAVA, (x_wave + x, y_wave + y, 5, 5))
+    
+    wave_points.append((x + width, y + height))
+    wave_points.append((x, y + height))
+    pygame.draw.polygon(screen, AYDA_LAVA, wave_points)
+    
+    ayda_phase += 0.1
+    
+    #TEXT
+    screen.blit(ayda_text, (x+width//2 - ayda_text.get_width()//2, y+20))
+
+    # -------------------------------------------------------------------------
+    x = 0
+    y = 960
+
+    # Draw the background
+    pygame.draw.rect(screen, (135, 206, 235), (x , y, WIDTH_henry, HEIGHT_henry))
+
+    # Draw the shapes
+    pygame.draw.rect(screen, (150, 75, 0), (rect_x_henry + x + x_henry, rect_y_henry + 200 + y - y_henry, 20, 20))
+    pygame.draw.circle(screen, (138, 30, 30), (circle_x_henry + x + x_henry, circle_y_henry + 200 + y - y_henry), 30)
+    pygame.draw.rect(screen, (0, 0, 0), (rect_x_henry + x + 2 + x_henry, rect_y_henry + 200 + y - 20 - y_henry, 3, 20))
+    pygame.draw.rect(screen, (0, 0, 0), (rect_x_henry + x + 15 + x_henry, rect_y_henry + + 200 + y - 20 - y_henry, 3, 20))
+    pygame.draw.circle(screen, (255, 234, 0), (circle_x_henry + x - 180, circle_y_henry - 90 + y), 50)
+    pygame.draw.rect(screen, (1, 50, 32), (x , y + 400, WIDTH_henry, HEIGHT_henry - 400))
+
+    pygame.draw.rect(screen, (150, 21, 21), (x + rect_x_henry - 10, y + rect_y_henry - 50 + 200, 50, 50))
+    pygame.draw.polygon(screen, (84, 8, 8), [(240 + x, 151 + y + 200), (260 + x, 115 + y + 200), (288 + x, 151 + y + 200)])
+    pygame.draw.rect(screen, (217, 242, 29), (244 + x, 159 + y + 200, 10, 10))
+    pygame.draw.rect(screen, (217, 242, 29), (272 + x, 159 + y + 200, 10, 10))
+    pygame.draw.rect(screen, (0, 0, 0), (258 + x, 183 + y + 200, 10, 17))
+
+    y_henry += 4
+    x_henry += 3
+
+    if y_henry >= 310:
+        y_henry = 0
+    if y_henry == 160:
+        bomb_henry = True
+    if x_henry == 15 or x_henry == 12 or x_henry == 9 or x_henry == 6:
+        x_henry-= 6
+
+    if bomb_henry and not bomb_stopped_henry:
+        pygame.draw.circle(screen, (0, 0, 0), (bomb_x_henry + x, bomb_y_henry + 190 + y + h_henry), 5)
+        h_henry += 10        
+    if h_henry >= 160 and not bomb_stopped_henry:
+        pygame.draw.circle(screen, (236, 146, 55), (x + 260, y + 400), w_henry)
+        w_henry += 4
+        bomb_henry = False
+        if w_henry >= 100:
+            bomb_stopped_henry = True
+
+    if bomb_stopped_henry:
+        h_henry = 0
+        w_henry = 1
+        x_henry = 0
+        bomb_stopped_henry = False
+    # ---------------------------------------------------------------------------
+    
     # ----------------------------------------------------------------------------------------
     x = 1920
     y = 1440
@@ -757,6 +938,7 @@ while running:
 
     # Rather than screen.fill, draw a rectangle
     screen.blit(bg_gallo, (x, y))
+
 
     screen.blit(welcome_text_gallo, (x + width//2 - welcome_text_gallo.get_width()//2, y + height//3 - welcome_text_gallo.get_height()//2))
     scaled_text = pygame.transform.scale(text_gallo, (text_gallo.get_width() * text_scale_gallo, text_gallo.get_height() * text_scale_gallo))
