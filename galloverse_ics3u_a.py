@@ -819,15 +819,15 @@ while running:
 
     #cookie monster animation
     #face
-    pygame.draw.circle(screen, (1,161,201), (sana_monster_x, sana_monster_y), 45)
+    pygame.draw.circle(screen, (1,161,201), (x + sana_monster_x, y + sana_monster_y), 45)
     #mouth
-    pygame.draw.ellipse(screen, (0, 0, 0), (sana_monster_x - 5, sana_monster_y, 40, 25))
+    pygame.draw.ellipse(screen, (0, 0, 0), (x + sana_monster_x - 5, y + sana_monster_y, 40, 25))
     #eyes
-    pygame.draw.circle(screen, (255, 255, 255), (sana_monster_x + 25, sana_monster_y - 40), 17)
-    pygame.draw.circle(screen, (255, 255, 255), (sana_monster_x - 15, sana_monster_y - 40), 17)
+    pygame.draw.circle(screen, (255, 255, 255), (x + sana_monster_x + 25, y + sana_monster_y - 40), 17)
+    pygame.draw.circle(screen, (255, 255, 255), (x + sana_monster_x - 15, y + sana_monster_y - 40), 17)
     #pupils
-    pygame.draw.circle(screen, (0,0,0), (sana_monster_x + 22, sana_monster_y - 43), 8)
-    pygame.draw.circle(screen, (0,0,0), (sana_monster_x - 12, sana_monster_y - 37), 8)
+    pygame.draw.circle(screen, (0,0,0), (x + sana_monster_x + 22, y + sana_monster_y - 43), 8)
+    pygame.draw.circle(screen, (0,0,0), (x + sana_monster_x - 12, y + sana_monster_y - 37), 8)
 
 
     #Jaden Lam-------------------------------------------------------------------------------
