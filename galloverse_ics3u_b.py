@@ -924,7 +924,84 @@ while running:
         x_henry = 0
         bomb_stopped_henry = False
     # ---------------------------------------------------------------------------
-    
+    x = 640 * 5 
+    y = 480 * 1 
+    width = 640
+    height = 480
+
+    # Points of spaghetti
+    pygame.draw.rect(screen, (0, 0, 0), (x, y, width, height))
+    points = [(x + 160, y + 325), (x + 449, y + 296)]
+    pointsv2 = [(x + 155, y + 315), (x + 450, y + 255)]
+    pointsv3 = [(x + 143, y + 303), (x + 420, y + 285)]
+    pointsv4 = [(x + 147, y + 270), (x + 450, y + 328)]
+    pointsv5 = [(x + 157, y + 260), (x + 450, y + 276)]
+    pointsv6 = [(x + 127, y + 287), (x + 460, y + 309)]
+    pointsv7 = [(x + 215, y + 273), (x + 375, y + 323)]
+    pointsv8 = [(x + 150, y + 50), (x + 450, y + 93)]
+    pointsv9 = [(x + 175, y + 54), (x + 435, y + 90)]
+
+#The spaghetti
+    pygame.draw.lines(screen, (227,207,87), False, points, 10)
+    pygame.draw.lines(screen, (227,207,87), False, pointsv2, 10)
+    pygame.draw.lines(screen, (227,207,87), False, pointsv4, 10)
+    pygame.draw.lines(screen, (227,207,87), False, pointsv3, 11)
+    pygame.draw.lines(screen, (227,207,87), False, pointsv5, 10)
+    pygame.draw.lines(screen, (227,207,87), False, pointsv6, 10)
+    pygame.draw.lines(screen, (227,207,87), False, pointsv7, 9)
+    pygame.draw.lines(screen, (128,138,135), False, pointsv8, 80)
+    pygame.draw.lines(screen, (255,255,0), False, pointsv9, 80)
+
+
+  #The plate and meatballs
+    pygame.draw.ellipse(screen, (255,0,0), (x + 240, y + 257, 120, 50))
+    pygame.draw.ellipse(screen, (255, 255, 255,), (x + 150, y + 325, 310, 35))
+    pygame.draw.ellipse(screen, (131, 139, 139), (x + 165, y + 325, 280, 20))
+    pygame.draw.ellipse(screen, (255,0,0), (x + 160, y + 280, 90, 40))
+    pygame.draw.ellipse(screen, (255,0,0), (x + 350, y + 280, 90, 40))
+    pygame.draw.circle(screen, (128,138,135), (x + 312, y + 87,), 10)
+    pygame.draw.circle(screen, (128,138,135), (x + 362, y + 95,), 10)
+    pygame.draw.circle(screen, (128,138,135), (x + 252, y + 86,), 9)
+    pygame.draw.circle(screen, (128,138,135), (x + 392, y + 95,), 15)
+    pygame.draw.circle(screen, (128,138,135), (x + 230, y + 50,), 13)
+    pygame.draw.circle(screen, (128,138,135), (x + 296, y + 57,), 18)
+    pygame.draw.circle(screen, (128,138,135), (x + 336, y + 70,), 10)
+    pygame.draw.circle(screen, (128,138,135), (x + 262, y + 67,), 10) 
+    pygame.draw.circle(screen, (128,138,135), (x + 210, y + 57,), 7)
+    pygame.draw.circle(screen, (128,138,135), (x + 360, y + 57,), 7)
+    pygame.draw.circle(screen, (128,138,135), (x + 399, y + 63,), 14)
+    pygame.draw.circle(screen, (128,138,135), (x + 219, y + 85,), 10)
+      #More meatballs
+    x_meatballs_nicholas = x-3315
+
+    while x_meatballs_nicholas < 138:
+      pygame.draw.circle(screen, (138, 54, 15), (x + x_meatballs_nicholas + 277, y + 300 ), 25)
+      pygame.draw.circle(screen, (138, 54, 15,), (x +  x_meatballs_nicholas + 326, y + 300 ), 25)
+      pygame.draw.circle(screen, (138, 54, 15,), (x +  x_meatballs_nicholas + 301, y + 257 ), 25)
+      pygame.draw.circle(screen, (0, 0, 0,), (x +  x_meatballs_nicholas + 320, y + 290 ), 5)
+      pygame.draw.circle(screen, (0, 0, 0,), (x +  x_meatballs_nicholas + 280, y + 295 ), 5)
+      pygame.draw.circle(screen, (0, 0, 0,), (x +  x_meatballs_nicholas + 269, y + 310 ), 5)
+      pygame.draw.circle(screen, (0, 0, 0,), (x +  x_meatballs_nicholas + 340, y + 305 ), 5)
+      pygame.draw.circle(screen, (0, 0, 0,), (x +  x_meatballs_nicholas + 290, y + 247 ), 5)
+      pygame.draw.circle(screen, (0, 0, 0,), (x +  x_meatballs_nicholas + 312, y + 263 ), 5)
+      x_meatballs_nicholas += 24 + 63 + 25
+
+#Cheese curds
+    cheese_curds = []
+
+    for i in range(40):
+        
+        cheese_x = random.randint(155, 449) 
+        cheese_y = random.randint(100, 305) 
+        cheese_curds.append([cheese_x, cheese_y])
+
+    for curd in cheese_curds:
+        curd[1] += 1  
+        pygame.draw.circle(screen, (255, 255, 0), (x+curd[0], y+curd[1]), 5) 
+
+        if curd[1] > 325:  
+            curd[1] = random.randint(-100, -10)
+            curd[0] = random.randint(x + 155, x + 449)
     # ----------------------------------------------------------------------------------------
     x = 1920
     y = 1440
